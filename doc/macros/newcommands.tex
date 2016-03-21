@@ -1,0 +1,70 @@
+% --| other new definitions |-----------------------------------------
+
+
+
+% --| Math |-------------------------------------------------------
+
+
+% -- new commands --
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\Abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\Trace}[1]{\ensuremath{\Tr\left\{\,#1\,\right\}}} % Trace /Spur
+%
+
+% -- differentials --
+\newcommand{\pd}{\partial\mspace{1mu}} % partial diff
+\newcommand{\td}{\,\mathrm{d}}	% total diff
+
+% -- Abbreviations --
+\renewcommand{\Re}{\text{Re}}			% Real value
+\renewcommand{\Im}{\text{Im}}			% Real value
+\newcommand{\complex}{\mathbb{C}} % Complex
+\newcommand{\real}{\mathbb{R}}    % Real
+\renewcommand{\i}{\mathrm{i}}   
+%
+\newcommand{\Ham}{\mathcal{H}}    
+\newcommand{\Prob}{\mathscr{P}}   
+\newcommand{\unity}{\mathds{1}}   
+%
+% -- New Operators --
+\IfDefined{DeclareMathOperator}{
+  \DeclareMathOperator{\rot}{rot}
+  \DeclareMathOperator{\grad}{grad}
+  \DeclareMathOperator{\rect}{rect}
+  \renewcommand{\div}{\text{div}\,}
+  \DeclareMathOperator{\Tr}{Tr}
+  \DeclareMathOperator{\const}{const}
+  \DeclareMathOperator{\e}{e} 			% exponatial Function
+}
+
+% -- new symbols --
+\newcommand{\laplace}{\Delta}
+\newcommand{\dalembert}{\Box}
+
+% -- Table Header rotat
+\newcommand*\THrot{\rotatebox{90}}
+
+% -- Image Source --
+\newcommand{\source}[1]{\caption*{Quelle: {#1}} }
+
+\newcommand*{\captionsource}[2]{%
+  \caption[{#1}]{%
+    #1%
+    \\\hspace{\linewidth}%
+    \textbf{Quelle:} #2%
+  }%
+}
+
+% -- Itemize, bold title
+\newcommand{\itemBfText}[2]{\item \textbf{#1}\\#2}
+
+\newcommand{\itemBf}[1]{\item \textbf{#1}}
+
+
+% -- Authors
+\newcommand{\DBRU}{Daniel Brun}
+
+%Vhistory
+\renewcommand \vhAuthorColWidth{0.4\hsize}
+\renewcommand \vhChangeColWidth{1.6\hsize}

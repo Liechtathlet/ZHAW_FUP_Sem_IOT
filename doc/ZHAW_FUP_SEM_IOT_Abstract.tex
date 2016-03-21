@@ -1,0 +1,77 @@
+% !TeX encoding=utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = de_CH_frami
+
+%Document class
+\documentclass[11pt,a4paper,ngerman]{article}
+
+\usepackage{graphicx}
+% uncomment according to your operating system:
+% ------------------------------------------------
+%\usepackage[latin1]{inputenc}    %% european characters can be used (Windows, old Linux)
+\usepackage[utf8]{inputenc}     %% european characters can be used (Linux)
+%\usepackage[applemac]{inputenc} %% european characters can be used (Mac OS)
+% ------------------------------------------------
+\usepackage[T1]{fontenc}   %% get hyphenation and accented letters right
+\usepackage{mathptmx}      %% use fitting times fonts also in formulas
+
+% do not change these lines:
+\pagestyle{empty}                %% no page numbers!
+\usepackage[left=35mm, right=35mm, top=15mm, bottom=20mm, noheadfoot]{geometry}
+%% please don't change geometry settings!
+
+%\usepackage{parskip}
+
+% Some more packages
+\usepackage{fancyhdr}
+
+% Heaader and Footer
+\pagestyle{fancy}
+
+\fancypagestyle{empty}{%
+  \fancyhf{}% Clear header/footer
+  \fancyfoot[C]{Simon Lang, Daniel Brun}
+  %\fancyhead[R]{Konzeption und Prototyp zur Ablösung eines Legacy Systemes}
+  \fancyfoot[L]{Date} %TODO
+  \fancyfoot[R]{ZHAW}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{1pt}
+
+% Begin document	
+\begin{document}
+
+% ----------------------------------------
+% Title
+% ----------------------------------------
+\rmfamily\large  
+\title{\textbf{Abstract} \\ \rmfamily\huge  \textsc{Titel}}
+\author{Simon Lang, Daniel Brun\\
+Zürcher Hochschule für Angewandte Wissenschaften
+}
+\date{} % <--- leave date empty
+\maketitle\thispagestyle{empty} %% <-- you need this for the first page
+
+\rmfamily\normalsize
+\setlength{\parindent}{0pt}
+% ----------------------------------------
+% Title
+% ----------------------------------------
+\section*{Ausgangslage und Ziel}
+
+\section*{Vorgehensweise}
+
+\section*{Detailkonzept \& Proof-of-Concept}
+
+%\begin{figure}[h]
+%uncomment next line to include a graphic file
+%\centerline{\includegraphics[width=6cm, angle=-90]{fig5.eps}}
+%and comment out next line
+%\centerline{\framebox[6cm]{\rule{0cm}{3.5cm} figure example}}
+%\caption{Structure of the DNA double helix}
+%\label{fig5}
+%\end{figure}
+
+\end{document}
+ 

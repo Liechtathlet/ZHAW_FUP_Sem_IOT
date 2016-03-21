@@ -1,0 +1,176 @@
+\chapter{Incident Detection \& Incident Response} \label{chap:IDIR}
+Dieses Kapitel beschäftigt sich zum einen mit der Incident Detection, also die Erkennung eines Sicherheitsvorfalles, und zum anderen mit der Incident Response, der Reaktion auf einen Sicherheitsvorfall.
+
+\section{Incident Detection (Erkennung eines Vorfalls)} \label{sec:IncidentDetection}
+Bevor auf einen Angriff, beziehungsweise auf einen Sicherheitsvorfall, reagiert werden kann muss dieser zuerst bemerkt werden. Bleibt der Vorfall unerkannt, wird es nie zu einer Untersuchung kommen.
+Ein Angriff kann durch verschiedenste Indikatoren erkannt und zum Teil sogar vorausgesagt werden. Nachfolgend werden einige dieser Indikatoren aufgelistet.
+
+\subsection{Hinweise Netzwerkseitig}
+\begin{itemize}
+  \item Ungewöhnlich hohe Netzwerklast
+  \item Ungewöhnliche Anzahl Firewall-Regelverstösse
+\end{itemize}
+
+\subsection{Hinweise Serverseitig}
+\begin{itemize}
+  \item Unbekannte Prozesse
+  \item Unbekannte / Neue User
+  \item Unbekannte Dateien
+  \item Ungewöhnliche Systemlast
+  \item Dienste laufen nicht mehr
+  \item Ungewöhnliche Systemanmeldungen
+  \item Systemabsturz
+  \item Kleiner werdende Log-Files
+  \item Bestehende Dateien werden grösser (Beispiel: Ausführbare Datei wächst um mehrere kB)
+  \item Versuch Berechtigungen zu verändern
+  \item Schlechte Performance
+\end{itemize}
+
+\subsection{Hinweise durch Intrusion-Detection-Systeme}
+Intrusion-Detection-Systeme sind dazu da Angriffe möglichst früh zu erkennen und die entsprechenden Stellen zu informieren. Ist das Intrusion-Detection-System gut konfiguriert, kann dieses Angriffe anhand von Strategien und Mustern erkennen.
+
+
+\subsection{Weitere Hinweise}
+Weitere Hinweise können durch Kunden, Partner, Mitarbeiter, Strafverfolgungsbehörden oder die Presse erfolgen.
+
+\subsection{Meldung eines Vorfalles}\label{subsec:IncidentDetection:MeldungVorfall}
+Wurde ein möglicher Sicherheitsvorfall oder ein Angriff gemeldet, ist es wichtig, dass die Person, welche die Meldung entgegen nimmt korrekt und schnell reagiert. Personen welche solche Meldungen entgegen nehmen könnten (z.B. Mitarbeiter des Service Desks) sollten geschult und mit einem entsprechenden Merkblatt und einer Checkliste / Formular ausgestattet werden. Die entgegennehmende Person muss vom Melder so viele Informationen wie möglich erfragen, damit anschliessend schnellere und effizientere Entscheidungen getroffen werden können. Dabei sind sowohl Informationen zum Melder, als auch die Symptome und den Zustand des Systems von Interesse. Ein Beispiel für ein solches Formular ist im Anhang \ref{appx:Template:IncidentMessage} \nameref{appx:Template:IncidentMessage} zu finden.
+
+Sollte die Meldung des Vorfalles nicht direkt an das Incident Response Team gelangt sein, muss der Vorfall unverzüglich dem zuständigen Incident Response Team gemeldet werden. Ist kein ständiges Incident Response Team vorhanden, muss dieses entsprechend aufgeboten werden. Gibt es in der Organisation kein Incident Response Team und keinen Incident Response Plan ist das weitere Vorgehen mit dem Vorgesetzten und allenfalls einem Mitglied des höheren Managements abzustimmen. Übereilte Reaktionen sollten vermieden werden, da dadurch Beweisspuren verwischt oder vernichtet werden können. 
+
+
+\section{Incident Response}
+Die Incident Response hat zum Ziel bei einem Sicherheitsvorfall so rasch als möglich den entstandenen Schaden zu beurteilen, die verwendeten Angriffsmethoden und die Auswirkungen für die Organisation zu bestimmen und anschliessend entsprechende Massnahmen zu planen und umzusetzen. Als Ansatzpunkt sollte immer zuerst die Ursache und die ausgenutzte Schwachstelle ermittelt werden. Ausgehend von diesen Informationen können weitere Schritte unternommen werden.
+
+Die Computer Forensik ist ein essentieller Bestandteil des Incident Response Prozesses. Sie stellt die Methoden, Techniken und Werkzeuge zur Auffindung, Analyse und Auswertung der Spuren zur Verfügung. Es ist dabei notwendig die Massnahmen zur Beweissicherung fest im Prozess zu integrieren und zu etablieren. Nicht korrekt sichergestellte Spuren und Hinweise können unter Umständen juristisch nicht mehr verwertet werden. Ein guter und erfolgreicher Incident Response Prozess ist eine gute Grundlage für eine juristische Verfolgung des Angreifers.
+
+\subsection{Organisatorische Vorbereitung}
+Um schnell, effizient und korrekt auf einen Sicherheitsvorfall reagieren zu können ist es empfehlenswert einige Vorbereitungen auf organisatorischer Ebene zu treffen.
+Nachfolgend werden die wichtigsten Punkte aufgelistet, welche als Vorbereitung durchgeführt werden sollten. Diese Punkte können in einem Incident Response Plan festgehalten werden.
+
+\begin{itemize}
+\item Incident Awareness \\
+Bewusstsein für mögliche Sicherheitsvorfälle bei Mitarbeitern fördern.
+\item Konzept / Prozess für Monitoring und Alarmierung (zum Beispiel: zentralisierte Logs, Server-Auditing)
+\item Umsetzung des Konzeptes / Prozesses für Monitoring und Alarmierung im Rahmen des System Life Cycles.
+\item Weiterbildungen / Schulungen im Bereich Incident Detection und Incident Response
+\item Einholen der notwendigen Autorisierungen für die Einleitung der notwendigen Massnahmen.
+\item Festlegung der Rollen und Verantwortlichkeiten (inkl. Eskalations- / Alarmierungsregelung und Weisungskompetenzen)
+\item Konzept / Prozess für die Behandlung eines Sicherheitsvorfalles (Incident Response Prozess)
+\item Aufbau einer Datenbank mit den File-Hashes von bekannten / installierten und als ungefährlich eingestuften Betriebssystemen und Anwendungen.
+\item Verfassung und Etablierung von entsprechenden Policies, Guidelines und Procedures
+\item Aufbau eines Incident Response Teams
+\end{itemize}
+
+Auch sollte der Kontakt zur Ermittlungsbehörde bereits im Vorfeld hergestellt werden, damit im Ernstfall ein entsprechender Kontakt bereits vorhanden ist und rasch reagiert werden kann. Gegebenenfalls ist es auch sinnvoll den Kontakt zu einem externen Security-Spezialisten herzustellen, falls nicht ausreichend Know-How vorhanden ist.
+
+\subsection{Incident Response Team}
+Das Incident Response Team ist die Eingreiftruppe beim Eintreten eines Sicherheitsvorfalles. Die Aufgabe dieses Team ist es im Falle eines Incidents auf Basis der vorhandenen Informationen eine Lagebeurteilung und Risikoeinschätzung durchzuführen und anschliessend entsprechende Massnahmen einzuleiten.
+
+In einem Incident Response Team sollten folgende Rollen besetzt werden.
+
+\begin{itemize}
+\item \textbf{Kern-Team} \\
+\begin{itemize}
+\item Koordinator / Leiter mit direktem Zugang zum Management
+\item Kontaktstelle zur Entgegennahme von Verdachtsmeldungen
+\item Incident-Spezialist oder einen Ermittler aus dem Bereich der Computer Forensik
+\end{itemize}
+\item \textbf{Erweitertes Team} \\
+\begin{itemize}
+\item Juristischer Berater
+\item Auditor
+\item Mitarbeiter der physikalischen Sicherheit
+\item HR-Mitarbeiter
+\item Fachspezialisten (z.B. Netzwerk-, Sicherheits- oder Datenbankadministratoren)
+\end{itemize}
+\end{itemize}
+
+Die Mitarbeiter dieses Teams sollten über längere Erfahrung in ihrem Tätigkeitsbereich verfügen, gute Kommunikationsfähigkeiten besitzen, teamfähig, gut integriert und zuverlässig sein. Darüber hinaus müssen sie in der Lage sein unter Stress effiziente und akzeptable Entscheide zu treffen, sich an vorgegebene Regeln und Prozeduren zu halten und in sicherheitsrelevanten Aspekten als Vorbild dienen. 
+
+Bei grossen Organisationen kann das Incident Response Team als dauerhaftes Team vorhanden sein, welches auch noch andere Aufgaben im Sicherheitsbereich wahrnimmt. Bei kleineren Organisationen kann es sich um ein Team mit Mitgliedern aus mehreren Organisationseinheiten handeln, welche im Notfall zusammengerufen werden können. Denkbar ist es auch, dass das ganze Incident Response Team oder ein Teil davon (z.B. den Incident-Spezialisten) durch eine externe spezialisierte Unternehmung wahrgenommen wird.
+
+\subsection{Incident Response Prozess}
+Wurde ein Vorfall gemeldet gilt es zuerst zu beurteilen, ob es sich um einen wirklichen Sicherheitsvorfalle handelt, oder ob es sich um eine Betriebsstörung handelt.
+
+Handelt es sich um einen Sicherheitsvorfall muss auf Basis der vorhandenen Informationen eine erste Einschätzung durchgeführt werden. Um für die Einschätzung alle relevanten Informationen zur Verfügung zu haben, ist es essentiell, dass bei der Entgegennahme der Meldung die entsprechenden Informationen erfragt werden (Siehe dazu Kapitel \ref{subsec:IncidentDetection:MeldungVorfall} \nameref{subsec:IncidentDetection:MeldungVorfall}). Sind zu wenig Informationen vorhanden, kann bereits eine erste Analyse durchgeführt werden. Es ist jedoch darauf zu achten, dass keine Beweise durch unbedachtes / übereiltes Handeln zerstört werden. Ist kein polizeilicher Ermittler oder ein entsprechend ausgebildeter Spezialist vor Ort, sollte auf voreilige Aktionen verzichtet werden, da diese oft mehr Schaden als Nutzen anrichten.
+
+
+\section{Ablauf}
+Der Ablauf einer Incident Response ist immer stark von der jeweiligen Situation abhängig. Bei einem nicht kritischen System kann es unter Umständen sinnvoll sein, den Angreifer weitgehendst ungestört zu lassen und ihn zu beobachten. So können allenfalls wichtige Erkenntnisse und Hinweise zum Täter gesammelt werden, welche für die Identifizierung hilfreich sein könnten.
+
+Bei einem kritischen System würde der Angriff wahrscheinlich so rasch als möglich unterbunden, das System gehärtet und anschliessend wieder in Betrieb genommen werden.
+
+Eine weiteren Einfluss auf den Ablauf hat auch der Zeitpunkt des Angriffes. Je nachdem, wann die Meldung über den Sicherheitsvorfall eingegangen ist, kann der Angriff im vollen Gange oder aber schon vorbei sein. Es kann auch vorkommen, dass der eigentliche Angriff selbst noch gar nicht stattgefunden hat, aber zum Beispiel durch das Monitoring oder ein Intrusion Detection System Hinweise auf einen bevorstehenden Angriff erkannt wurden. 
+
+\begin{enumerate}[font=\bfseries]
+
+\item \textbf{Identify (Identifizierung)}
+\begin{enumerate}
+\item Eingang eines Hinweises für einen Verdachtsmoment \\(Siehe dazu Kapitel \ref{subsec:IncidentDetection:MeldungVorfall} \nameref{subsec:IncidentDetection:MeldungVorfall})
+\end{enumerate}
+
+\textbf{\item Assess (Beurteilung)}
+\begin{enumerate}
+\item Identifizierung der betroffenen Systeme
+\item Durchführen einer ersten Analyse / Sicherstellung von Spuren
+\item Einschätzung der Situation auf Basis der vorhandenen Informationen
+\item Handelt es sich um einen Sicherheitsvorfall oder eine Betriebsstörung? \\Bestätigung / Wiederlegung des Verdachtes.
+\item Information des Managements und weiteren zu involvierende Stellen.
+\end{enumerate}
+
+\textbf{\item Respond (Reagieren)}
+\begin{enumerate}
+\item Klassifizierung des Vorfalles \\
+Mögliche Klassifizierungen:
+\begin{itemize}
+\item Probing
+\item Portscanning
+\item Denial-of-Service Angriff
+\item Unberechtigter Zugriff auf User-Account / Admin-Account
+\item Datendiebstahl
+\item Datenmanipulation
+\item ...
+\end{itemize}
+
+\item Auswahl einer Response-Strategie \\
+Zu berücksichtigende Faktoren:
+\begin{itemize}
+\item Kritikalität des betroffenen Systems in Bezug auf die Unternehmensprozesse
+\item Kritikalität / Wichtigkeit der gestohlenen Daten.
+\item Täter-Vermutung
+\item Erforderliches Wissen / Fähigkeiten beim Täter
+\item Wie weit ist der Täter gekommen?
+\item Ist eine Downtime verkraftbar?
+\item Geschätzter finanzieller Schaden.
+\item Ist der Vorfall an die Öffentlichkeit gelangt?
+\end{itemize}
+\item Entscheid über Umsetzung der gewählten Strategie durch Management der Systemeigentümer.
+\item Vermeidung von unüberlegten Aktionen und Gegenangriffe
+\item Vorbereitung und Durchführung einer forensischen Analyse. \\ (Siehe dazu die Kapitel \ref{chapt:ComputerForensics}, \ref{chap:ForensischeAnalyse} und \ref{chap:ToolsTechniques})
+\item Muss der Sicherheitsvorfall veröffentlicht werden ? (Abwägung der Vor- / Nachteile, Eventuell muss der Vorfall aufgrund einer bindenden Vereinbarung gemeldet werden.) \\ 
+\item Gibt es eine Versicherung für diese Art von Vorfall? \\ Wenn Ja: Einbezug der Versicherung
+\item Meldung des Vorfalles an die Strafverfolgungsbehörde (falls notwendig)
+\end{enumerate}
+
+\textbf{\item Report (Bericht)}
+\begin{enumerate}
+\item Aufzeigen der Kennzahlen: Reaktionszeit, Wirksamkeit, Kosten, etc.
+\item Verfassung eines detaillierten Berichtes über den Vorfall und die forensische Analyse.
+\end{enumerate}
+
+\textbf{\item Review (Rückblick)}
+\begin{enumerate}
+\item Analyse Ermittlungsablauf
+\item Optimierung / Verbesserung Incident Response Prozess
+\item Festlegung von permanenten Massnahmen.
+\end{enumerate}
+
+\item \textbf{Measures (Massnahmen)}\\
+Die aufgelisteten Massnahmen können je nach Situation bereits während den Schritten 3, 4 oder 5 durchgeführt werden.
+\begin{enumerate}
+\item Überprüfung / Update / Wiederherstellung der kompromittierten Systeme
+\item Vorläufige Sperrung von verwendeten Accounts / Erzwingung Passwort-Wechsel für die betroffenen Accounts.
+\item Umsetzung von permanenten Massnahmen.
+\end{enumerate}
+\end{enumerate}

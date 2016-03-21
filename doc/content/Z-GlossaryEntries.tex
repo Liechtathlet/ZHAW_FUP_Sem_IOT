@@ -1,0 +1,27 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = de_CH_frami
+
+%LOOK: http://tex.stackexchange.com/questions/8946/how-to-combine-acronym-and-glossary
+
+%%% --- Glossary entries
+
+
+\newglossaryentry{gls:ERP}{name=ERP,
+description={Ein klassiches \gls{acr:ERP} System dient dazu interne Prozesse in den Kernbereichen Finanz- und Rechnungswesen, Vertrieb \& Marketing, Personalwesen und Produktion zentral in einem System abzubilden. Heutige \gls{acr:ERP} Systeme bieten neben den Kernbereichen noch zahlreiche weitere Funktionen, welche die klassischen Geschäftsprozesse unterstützen. \cite[S. 486]{Pearson:WirtschaftsInf:LaudonEtAl}}}
+
+
+%%% --- Acronym definitions
+\IfDefined{newacronym}{
+
+\newacronym{acr:ZHAW}{ZHAW}{Zürcher Hochschule für Angewandte Wissenschaften}
+
+\newacronym{acr:EBS}{EBS}{Einschreibe- und Bewertungssystem}
+
+\newglossaryentry{acr:ERP}{type=\acronymtype, name={ERP}, description={Enterprise-Resource-Planning}, first={Enterprise-Resource-Planning (ERP) \glsadd{gls:ERP}},see=[Glossary:]{\gls{gls:ERP}}}
+
+}
+
+
+
+
+

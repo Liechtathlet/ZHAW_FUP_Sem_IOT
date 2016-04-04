@@ -54,7 +54,20 @@ Functional Programming - Term Paper - IOT / Big Data
 
 ## Raspbian Setup
 ### WLAN
-
+** Disable IPv6**
+~~~
+sudo leafpad /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+~~~
 ### Groove PI
-
+  - http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/
 ### Mono / FSharp
+~~~
+sudo apt-get update
+sudo apt-get install mono-complete
+sudo apt-get install mono-csharp-shell
+sudo apt-get install fsharpi
+~~~
+
+## Vergleich Raspbian vs Windows 10
+http://netmf-tutorial.de/reaktionszeit-raspberry-pi-windows-10-gegen-net-micro-framework-gegen-arduino/

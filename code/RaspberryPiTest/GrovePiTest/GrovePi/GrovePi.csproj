@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GrovePiDotNet</RootNamespace>
+    <AssemblyName>GrovePiDotNet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Windows" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\Delay.cs" />
+    <Compile Include="I2CDevices\RgbLcdDisplay.cs" />
+    <Compile Include="Sensors\AccelerometerSensor.cs" />
+    <Compile Include="Sensors\ButtonSensor.cs" />
+    <Compile Include="Sensors\Buzzer.cs" />
+    <Compile Include="Sensors\ChainableRgbLed.cs" />
+    <Compile Include="Sensors\FourDigitDisplay.cs" />
+    <Compile Include="Sensors\Led.cs" />
+    <Compile Include="Sensors\LedBar.cs" />
+    <Compile Include="Sensors\LightSensor.cs" />
+    <Compile Include="Sensors\RealTimeClock.cs" />
+    <Compile Include="Sensors\Relay.cs" />
+    <Compile Include="Sensors\RotaryAngleSensor.cs" />
+    <Compile Include="Sensors\Sensor.cs" />
+    <Compile Include="Sensors\SensorStatus.cs" />
+    <Compile Include="Sensors\SoundSensor.cs" />
+    <Compile Include="Sensors\TemperatureAndHumiditySensor.cs" />
+    <Compile Include="Sensors\TemperatureSensor.cs" />
+    <Compile Include="Sensors\UltrasonicRangerSensor.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DeviceFactory.cs" />
+    <Compile Include="GrovePi.cs" />
+    <Compile Include="Pin.cs" />
+    <Compile Include="PinMode.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrovePiTest", "GrovePiTest\GrovePiTest.csproj", "{26CA7B66-2546-4FD8-86DF-EE2171C8349F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrovePi", "GrovePi\GrovePi.csproj", "{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{26CA7B66-2546-4FD8-86DF-EE2171C8349F}.Debug|x86.Build.0 = Debug|x86
 		{26CA7B66-2546-4FD8-86DF-EE2171C8349F}.Release|x86.ActiveCfg = Release|x86
 		{26CA7B66-2546-4FD8-86DF-EE2171C8349F}.Release|x86.Build.0 = Release|x86
+		{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}.Debug|x86.Build.0 = Debug|Any CPU
+		{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}.Release|x86.ActiveCfg = Release|Any CPU
+		{3BEC5898-066B-4A90-83AC-6D1DAD5C7130}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

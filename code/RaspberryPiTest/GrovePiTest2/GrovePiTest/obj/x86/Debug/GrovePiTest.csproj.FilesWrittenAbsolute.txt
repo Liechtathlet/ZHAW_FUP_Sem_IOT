@@ -1,0 +1,16 @@
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest/GrovePiTest/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest/GrovePiTest/bin/Debug/Raspberry.System.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest/GrovePiTest/bin/Debug/Raspberry.IO.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest/GrovePiTest/bin/Debug/Raspberry.IO.GeneralPurpose.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest/GrovePiTest/bin/Debug/Raspberry.IO.Interop.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.System.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.IO.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.IO.GeneralPurpose.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.IO.Interop.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.IO.InterIntegratedCircuit.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/Raspberry.IO.InterIntegratedCircuit.dll.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/GrovePiTest.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/bin/Debug/GrovePiTest.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/obj/x86/Debug/GrovePiTest.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/GrovePiTest/obj/x86/Debug/GrovePiTest.exe.mdb

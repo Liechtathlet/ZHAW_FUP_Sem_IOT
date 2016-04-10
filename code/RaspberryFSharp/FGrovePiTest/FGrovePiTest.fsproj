@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{C5F1ED31-0511-44F6-93A3-0F380E14858E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FGrovePiTest</RootNamespace>
+    <AssemblyName>FGrovePiTest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="FSharp.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Program.fsx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <None Include="project.json" />
+    <None Include="libs\GrovePiTest.dll" />
+    <None Include="libs\GrovePiTest.dll.mdb" />
+    <None Include="libs\grovepitest.pc" />
+    <None Include="libs\Raspberry.IO.dll" />
+    <None Include="libs\Raspberry.IO.GeneralPurpose.dll" />
+    <None Include="libs\Raspberry.IO.InterIntegratedCircuit.dll" />
+    <None Include="libs\Raspberry.IO.InterIntegratedCircuit.dll.mdb" />
+    <None Include="libs\Raspberry.IO.Interop.dll" />
+    <None Include="libs\Raspberry.System.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="libs\" />
+  </ItemGroup>
+</Project>

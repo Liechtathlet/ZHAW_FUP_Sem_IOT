@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>PackagingProject</ItemType>
+    <ProjectGuid>{CAD828D9-BE50-4E31-AA40-A609F2EB4135}</ProjectGuid>
+    <Packages>
+      <Packages xmlns="">
+        <Package name="Create-Lib-Zip for F#">
+          <Builder targetFile="..\RaspberryFSharp\FGrovePiTest\libs\GrovePiForDotNet.zip" platform="Linux" configuration="Debug" ctype="BinariesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="Raspberry.IO.InterIntegratedCircuit\Raspberry.IO.InterIntegratedCircuit.csproj" />
+              <SolutionItemReference path="Raspberry.GrovePi\GrovePiTest.csproj" />
+            </ChildEntries>
+            <RootEntry path="GrovePiForDotNet.sln" id=":root:" />
+          </Builder>
+        </Package>
+      </Packages>
+    </Packages>
+  </PropertyGroup>
+</Project>

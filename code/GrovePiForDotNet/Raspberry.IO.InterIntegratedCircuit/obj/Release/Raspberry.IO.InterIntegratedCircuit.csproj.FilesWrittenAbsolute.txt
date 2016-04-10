@@ -1,0 +1,4 @@
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/Raspberry.IO.InterIntegratedCircuit/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/Raspberry.IO.InterIntegratedCircuit/bin/Release/Raspberry.IO.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/Raspberry.IO.InterIntegratedCircuit/bin/Release/Raspberry.IO.GeneralPurpose.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryPiTest/GrovePiTest2/Raspberry.IO.InterIntegratedCircuit/bin/Release/Raspberry.IO.Interop.dll

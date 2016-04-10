@@ -101,5 +101,10 @@ dnvm upgrade -u
   - https://www.dotnet.xyz/tutorials/net-core-unter-linux-raspberry-pi/
   - https://www.hackster.io/9381/grove-pi-windows-iot-getting-started-94bf38
 
+**Hints:**
+  - .NET Core aktuell nur für 64bit
+  - Raspberry PI OS sind praktisch alle 32bit
+  - GrovePi NuGet Library verwendet .NET Core native (Windows only)
+  - https://github.com/raspberry-sharp/raspberry-sharp-io
 ## Vergleich Raspbian vs Windows 10
 http://netmf-tutorial.de/reaktionszeit-raspberry-pi-windows-10-gegen-net-micro-framework-gegen-arduino/

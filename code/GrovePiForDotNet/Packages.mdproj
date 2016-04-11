@@ -4,7 +4,7 @@
     <ItemType>PackagingProject</ItemType>
     <ProjectGuid>{CAD828D9-BE50-4E31-AA40-A609F2EB4135}</ProjectGuid>
     <Packages>
-      <Packages xmlns="">
+      <Packages>
         <Package name="Create-Lib-Zip for F#">
           <Builder targetFile="..\RaspberryFSharp\FGrovePiTest\libs\GrovePiForDotNet.zip" platform="Linux" configuration="Debug" ctype="BinariesZipPackageBuilder">
             <ChildEntries>

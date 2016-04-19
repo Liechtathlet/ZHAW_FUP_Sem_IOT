@@ -26,6 +26,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="FSharp.Core" />
+    <Reference Include="FSharp.Data">
+      <HintPath>..\packages\FSharp.Data.2.2.5\lib\net40\FSharp.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
@@ -43,8 +47,13 @@
     <None Include="libs\Raspberry.IO.InterIntegratedCircuit.dll.mdb" />
     <None Include="libs\Raspberry.IO.Interop.dll" />
     <None Include="libs\Raspberry.System.dll" />
+    <None Include="packages.config" />
+    <None Include="data\base.structure.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="libs\" />
+    <Folder Include="data\" />
   </ItemGroup>
 </Project>

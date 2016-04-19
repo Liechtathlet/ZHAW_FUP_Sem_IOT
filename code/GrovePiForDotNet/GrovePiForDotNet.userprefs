@@ -1,23 +1,6 @@
 ﻿<Properties StartupItem="Packages.mdproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.GrovePi/Program.cs">
-    <Files>
-      <File FileName="Raspberry.GrovePi/Program.cs" Line="60" Column="60" />
-      <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDeviceConnection.cs" Line="81" Column="43" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GrovePiForDotNet" expanded="True">
-            <Node name="GrovePiTest" expanded="True" selected="True" />
-            <Node name="Packages" expanded="True" />
-            <Node name="Raspberry.GrovePi" expanded="True" />
-            <Node name="Raspberry.IO.InterIntegratedCircuit" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

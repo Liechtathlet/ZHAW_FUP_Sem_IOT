@@ -10,7 +10,6 @@ namespace GrovePiTest
 
 		public static void blink()
 		{
-			//var distance = DeviceFactory.Build.UltraSonicSensor(Pin.DigitalPin2).MeasureInCentimeters();
 			Console.WriteLine ("Hello, Linux");
 			Console.WriteLine ("Love from c#.");
 
@@ -31,6 +30,9 @@ namespace GrovePiTest
 				}
 
 				try {
+					//http://www.dexterindustries.com/GrovePi/engineering/port-description/
+					//http://www.dexterindustries.com/GrovePi/programming/grovepi-protocol-adding-custom-sensors/ 
+
 					Console.WriteLine ("Get Noise Level:");
 					//Dummy, Action, Pin, Data, Data
 					deviceConnection.Write (new[] { (byte)1, (byte)3, (byte)0, (byte)0, (byte)0 });

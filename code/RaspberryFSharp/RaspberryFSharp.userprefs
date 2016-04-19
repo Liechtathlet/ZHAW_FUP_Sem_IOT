@@ -1,8 +1,15 @@
 ﻿<Properties StartupItem="FGrovePiTest/FGrovePiTest.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FGrovePiTest/Program.fsx">
+    <Files>
+      <File FileName="FGrovePiTest/Program.fsx" Line="10" Column="22" />
+      <File FileName="FGrovePiTest/data/base.structure.json" Line="5" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/Program.fsx" line="31" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

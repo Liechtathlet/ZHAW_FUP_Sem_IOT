@@ -1,0 +1,7 @@
+- Install win10 IoT with NOOBS
+- Goto http://192.168.1.114:8080 / http://slangs-rpi.local:8080/.
+    - UN: Administrator
+    - PW: p@ssw0rd
+- https://github.com/raspberry-sharp
+- https://github.com/raspberry-sharp/raspberry-sharp-io/tree/master/Raspberry.IO.InterIntegratedCircuit
+- SeedStudio Sound Sensor

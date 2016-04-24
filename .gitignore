@@ -7,6 +7,10 @@
 *.out
 *.toc
 *.fmt
+*.mw
+*.run.xml
+*.slg
+*.syi
 
 ## Intermediate documents:
 *.dvi
@@ -17,6 +21,7 @@
 # *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bib
 *.bbl
 *.bcf
 *.blg

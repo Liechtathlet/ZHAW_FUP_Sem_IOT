@@ -1,4 +1,30 @@
 % !TeX encoding=utf8
 % !TeX spellcheck = de_CH_frami
 
-\chapter{Ausgangslage}
+\chapter{Recherche}
+In diesem Kapitel werden die Grundlagen recherchiert wie die beiden Teilprojekte, BigData erheben und auswerten, angegangen werden können.
+
+\section{Ausgangslage}
+Die Vorlesung zu diesem Semniar befasst sich mit der Programmiersprache F\#, weshalb auch dieses Seminar mit derselben Sprache umgesetzt wird. Als \Gls{gls:iot} Gerät wird ein Raspberry Pi\footcite{Raspberry_Pi_2016-04-24} verwendet. Dies ist ein Einplatinencomputer welches von der britischen Raspberry Pi Foundation entwickelt wurde. Der Vorteil daran ist, dass es weit verbreitet ist\footcite{Raspberry_Pi_Erfolgsgeschichte_2016-04-24} und viele Sensoren auf dem Markt gibt mit welchem man Daten sammeln kann\footcite{Raspberry_Pi_Sensor_2016-04-24}.
+
+\section{F\# mit dem Raspberry Pi}
+Am 29 Februar 2016 ist das neue Model Raspberry Pi 3 auf dem Markt erschienen\footcite{Raspberry_Pi_3_2016-04-24}. Einige Zahlen zu dem Gerät:
+
+\begin{itemize}
+\item 1.2GHz 64-bit quad-core ARM Cortex-A53 CPU (~10x die Leistung eines Raspberry Pi 1 und 50-60\% die Leistung eines Raspberry Pi 2)
+\item Integriertes 802.11n wireless LAN und Bluetooth 4.1
+\item Komplette Kompatibilität zu dem Raspberry Pi 1 und 2
+\end{itemize} 
+
+Um F\# auf dem Gerät laufen zu lassen, gibt es zwei Möglichkeiten, welche nachfolgend erläutert werden.
+
+\subsection{Raspbian mit Mono}
+Ein weit verbreitetes Betriebsystem für das Raspberry Pi ist das Raspbian\footcite{FrontPage_-_Raspbian_2016-04-24}. Bei dem Namen handelt es sich um eine Zusammenfassung von Raspberry und Debian. Demnach handelt es sich auch um eine Debian Distribution.
+
+Um F\# auf dem Raspbian laufen zu lassen wird Mono benötigt\footcite{Mono_2016-04-24}. Dabei handelt es sich um eine Open Source implementierung von Microsoft's .NET Framework, welches für die Ausführung von F\# benötigt wird.
+
+\subsection{Windows 10 IoT}
+Microsoft hat mit Windows 10 IoT eine Version ihres Betriebsystem herausgebracht, welches speziell für leistungsschwächere Geräte entwickelt wurde\footcite{Windows_IoT_2016-04-24}. Bei der IoT Version von Windows 10 it ein .NET Framework bereits vorhanden. Demnach sollte es keine Probleme darstellen F\# darauf laufen zu lassen.
+
+\section{Sensoren}
+Für den Raspberry Pi gibt es viele Sensoren auf dem Markt. Herauskristallisiert hat sich jedoch das Starter Kid GrovePi+\footcite{GrovePi_2016-04-24}. Dieses kommt mit einem Ton-, Temperatur-, Feuchtigkeit-, Lichts- und noch weiteren Sensoren. Vorteil an dem Kit ist es, dass es eine Library für .NET gibt mit welchem die Sensoren angesprochen werden können\footcite{NuGet_GrovePi_2016-04-24}.

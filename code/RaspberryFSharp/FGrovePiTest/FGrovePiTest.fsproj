@@ -51,6 +51,7 @@
     <None Include="data\base.structure.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Bin.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="libs\" />

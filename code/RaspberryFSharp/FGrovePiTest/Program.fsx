@@ -14,38 +14,88 @@ let blink =
     //GrovePiTest.Program.blink()
     0// return an integer exit code
 
-type DataEntryJson = JsonProvider<"./data/base.structure.json">
-
-let newData = DataEntryJson.Root("Mein Date",
-                                 "Meine Zeit",
-                                 12999)
-
-let outFile = new StreamWriter("./Test.json")
-outFile.Write(newData.JsonValue)
-outFile.Flush()
-outFile.Close()
-
-let writeJsonFile
-
-let readJsonFile
-//let tryJSON =
- //   type RaspiData = JsonProvider<"./data/Raspi.Temp.Sensor.json">
-
-
-let createTimerAndObservable timerInterval =
-    // setup a timer
+// Timer functions
+let startTimerAndCreateObservable timerInterval =
+    // Setup timer
     let timer = new System.Timers.Timer(float timerInterval)
+
+    // Autoreset and enable
     timer.AutoReset <- true
+    timer.Enabled <- true
 
-    // events are automatically IObservable
-    let observable = timer.Elapsed  
+    // Return observable event
+    timer.Elapsed  
 
-    // return an async task
-    let task = async {
-        timer.Start()
-        do! Async.Sleep 5000
-        timer.Stop()
-        }
 
-    // return a async task and the observable
-    (task,observable)
+// File functions
+let writeData suffix (data:String) (date:DateTime) (location:String) = 
+    let filepath = "./data/SensorData-" + suffix + ".csv"
+
+    if not(File.Exists(filepath)) then
+        printfn "Data-File doesn't exists, creating file"
+        use streamWriter = new StreamWriter(filepath,false)
+        streamWriter.WriteLine "Date;Time;SensorData;Location"
+        streamWriter.Flush()
+        streamWriter.Close()
+
+    use streamWriter = new StreamWriter(filepath,true)
+    [ date.ToString("dd.MM.yyyy");
+      date.ToString("hh:mm:ss.fff");
+      data;
+      location]
+    |> List.fold (fun r s -> r + s + ";") ""
+    |> streamWriter.WriteLine
+
+    streamWriter.Flush()
+    streamWriter.Close()
+
+// Location
+let currentLocation = "Home@Brun"
+
+// Read sensor values
+let readTemperatureAndHumiditySensor() =
+    5
+
+let readLightSensor() =
+    4
+
+let readNoiseSensor() =
+    10
+
+// Event processors
+let processTemperatureAndHumidityEvent() =
+    let sensorValue = readTemperatureAndHumiditySensor()
+    writeData "TH" (sensorValue.ToString()) DateTime.Now currentLocation
+
+let processNoiseEvent() =
+    let sensorValue = readNoiseSensor()
+    writeData "N" (sensorValue.ToString()) DateTime.Now currentLocation
+
+let processLightEvent() =
+    let sensorValue = readLightSensor()
+    writeData "L" (sensorValue.ToString()) DateTime.Now currentLocation
+
+
+// Main Program
+
+//Create TemperatureAndHumidity timer
+let thEventStream = startTimerAndCreateObservable 100 
+
+// Subscribe to event
+thEventStream |> Observable.subscribe (fun _ -> processTemperatureAndHumidityEvent())
+
+//Create Noise timer
+let nEventStream = startTimerAndCreateObservable 100 
+
+// Subscribe to event
+nEventStream |> Observable.subscribe (fun _ -> processNoiseEvent())
+
+//Create Light timer
+let lEventStream = startTimerAndCreateObservable 100 
+
+// Subscribe to event
+lEventStream |> Observable.subscribe (fun _ -> processLightEvent())
+
+
+//Wait for termination
+Console.ReadLine()

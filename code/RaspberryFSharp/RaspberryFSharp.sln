@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FGrovePiTest", "FGrovePiTest\FGrovePiTest.fsproj", "{C5F1ED31-0511-44F6-93A3-0F380E14858E}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Raspberry.FGrove", "Raspberry.FGrove\Raspberry.FGrove.fsproj", "{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}.Debug|x86.ActiveCfg = Debug|x86
+		{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}.Debug|x86.Build.0 = Debug|x86
+		{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}.Release|x86.ActiveCfg = Release|x86
+		{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}.Release|x86.Build.0 = Release|x86
 		{C5F1ED31-0511-44F6-93A3-0F380E14858E}.Debug|x86.ActiveCfg = Debug|x86
 		{C5F1ED31-0511-44F6-93A3-0F380E14858E}.Debug|x86.Build.0 = Debug|x86
 		{C5F1ED31-0511-44F6-93A3-0F380E14858E}.Release|x86.ActiveCfg = Release|x86

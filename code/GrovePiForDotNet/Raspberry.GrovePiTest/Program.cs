@@ -16,7 +16,6 @@ namespace GrovePiTest
 			const ConnectorPin sdaPin = ConnectorPin.P1Pin03;
 			const ConnectorPin sclPin = ConnectorPin.P1Pin05;
 
-
 			using (var driver = new I2cDriver (PinMapping.ToProcessor (sdaPin), PinMapping.ToProcessor (sclPin))) {
 				var deviceConnection = driver.Connect (0x04);
 

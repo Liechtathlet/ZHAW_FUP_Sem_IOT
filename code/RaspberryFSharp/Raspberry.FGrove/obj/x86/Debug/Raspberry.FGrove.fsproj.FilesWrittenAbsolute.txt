@@ -1,0 +1,5 @@
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/Raspberry.FGrove/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.fs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/Raspberry.FGrove/bin/Debug/Raspberry.FGrove.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/Raspberry.FGrove/bin/Debug/Raspberry.FGrove.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/Raspberry.FGrove/obj/x86/Debug/Raspberry.FGrove.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/Raspberry.FGrove/obj/x86/Debug/Raspberry.FGrove.exe.mdb

@@ -108,3 +108,30 @@ dnvm upgrade -u
   - https://github.com/raspberry-sharp/raspberry-sharp-io
 ## Vergleich Raspbian vs Windows 10
 http://netmf-tutorial.de/reaktionszeit-raspberry-pi-windows-10-gegen-net-micro-framework-gegen-arduino/
+
+## Code Transfer
+
+  1. SSH into Raspberry
+  ~~~
+  ssh pi@raspberrypi.local
+  ~~~
+  2. Switch directory
+  ~~~
+  cd /home/pi/Development/FUP
+  ~~~
+  3. Copy sources
+  ~~~
+  scp -rp ./Raspberry.FGrove pi@raspberrypi.local:/home/pi/Development/FUP/
+  ~~~
+  4. Switch directory
+  ~~~
+  cd ./Raspberry.FGrove
+  ~~~
+  5. Execute program
+  ~~~
+  sudo fsharpi --lib:./libs Program.fsx
+  ~~~
+  6. Transfer data to local
+  ~~~
+  scp -rp pi@raspberrypi.local:/home/pi/Development/FUP/Raspberry.FGrove/data ./RaspiData
+  ~~~

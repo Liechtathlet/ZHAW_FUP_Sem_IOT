@@ -8,7 +8,20 @@ open System.IO
 open System
 open System.Threading
 
+// Init
 let grovePiWrapper = new Raspberry.GrovePi.GrovePiWrapper()
+
+printfn "Starting data collection..."
+grovePiWrapper.blink(2000)
+
+printfn "Please provide your location:"
+
+// Location
+let currentLocation = Console.ReadLine()
+
+
+// Function definitions
+// ------------------------------------------------------
 
 // Timer functions
 let startTimerAndCreateObservable timerInterval =
@@ -20,7 +33,7 @@ let startTimerAndCreateObservable timerInterval =
     timer.Enabled <- true
 
     // Return observable event
-    timer.Elapsed  
+    (timer,timer.Elapsed)
 
 
 // File functions
@@ -44,9 +57,6 @@ let writeData suffix (data:String) (date:DateTime) (location:String) =
 
     streamWriter.Flush()
     streamWriter.Close()
-
-// Location
-let currentLocation = "Home@Brun"
 
 // Read sensor values
 let readTemperatureAndHumiditySensor() =
@@ -73,23 +83,22 @@ let processLightEvent() =
 
 
 // Main Program
-printfn "Starting data collection..."
-grovePiWrapper.blink(2000)
+// ------------------------------------------------------
 
 //Create TemperatureAndHumidity timer
-let thEventStream = startTimerAndCreateObservable 100 
+let thTimer, thEventStream = startTimerAndCreateObservable 100 
 
 // Subscribe to event
 thEventStream |> Observable.subscribe (fun _ -> processTemperatureAndHumidityEvent())
 
 //Create Noise timer
-let nEventStream = startTimerAndCreateObservable 100 
+let nTimer, nEventStream = startTimerAndCreateObservable 100 
 
 // Subscribe to event
 nEventStream |> Observable.subscribe (fun _ -> processNoiseEvent())
 
 //Create Light timer
-let lEventStream = startTimerAndCreateObservable 100 
+let lTimer, lEventStream = startTimerAndCreateObservable 100 
 
 // Subscribe to event
 lEventStream |> Observable.subscribe (fun _ -> processLightEvent())
@@ -97,5 +106,11 @@ lEventStream |> Observable.subscribe (fun _ -> processLightEvent())
 //Wait for termination
 Console.ReadLine()
 printfn "Stopping data collection"
+thTimer.Stop()
+nTimer.Stop()
+lTimer.Stop()
+Thread.Sleep(200)
+printfn "Goodbye"
 grovePiWrapper.blink(300)
 grovePiWrapper.blink(300)
+

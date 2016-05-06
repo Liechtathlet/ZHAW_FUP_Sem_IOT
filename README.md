@@ -119,6 +119,10 @@ http://netmf-tutorial.de/reaktionszeit-raspberry-pi-windows-10-gegen-net-micro-f
   ~~~
   cd /home/pi/Development/FUP
   ~~~
+  3. Init GrovePi
+  ~~~
+  python /home/pi/Development/GrovePi/Software/Python/grove_led_blink.py
+  ~~~
   3. Copy sources
   ~~~
   scp -rp ./Raspberry.FGrove pi@raspberrypi.local:/home/pi/Development/FUP/

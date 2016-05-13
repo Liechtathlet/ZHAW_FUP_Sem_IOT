@@ -103,6 +103,8 @@ let lTimer, lEventStream = startTimerAndCreateObservable 100
 // Subscribe to event
 lEventStream |> Observable.subscribe (fun _ -> processLightEvent())
 
+printfn "Starting data collection"
+
 //Wait for termination
 Console.ReadLine()
 printfn "Stopping data collection"

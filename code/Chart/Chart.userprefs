@@ -1,1 +1,12 @@
-﻿<Properties StartupItem="Chart/Chart.fsproj" />
+﻿<Properties StartupItem="Chart/Chart.fsproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DaniTestChart/Program.fsx">
+    <Files>
+      <File FileName="DaniTestChart/Program.fsx" Line="10" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,8 @@
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.fs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/DaniTestChart.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/DaniTestChart.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/obj/x86/Debug/DaniTestChart.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/obj/x86/Debug/DaniTestChart.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/FSharp.Charting.Gtk.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/OxyPlot.dll
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/OxyPlot.GtkSharp.dll

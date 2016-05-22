@@ -2,33 +2,61 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Recherche}
-In diesem Kapitel werden die Grundlagen recherchiert wie die beiden Teilprojekte, BigData erheben und auswerten, angegangen werden können.
+In diesem Kapitel werden die Grundlagen recherchiert wie die beiden Teilprojekte "`Sensordaten sammeln"' und "`Sensordaten auswerten (BigData)"' angegangen werden könnten.
 
 \section{Ausgangslage}
-Die Vorlesung zu diesem Semniar befasst sich mit der Programmiersprache F\#, weshalb auch dieses Seminar mit derselben Sprache umgesetzt wird. Als \Gls{gls:iot} Gerät wird ein Raspberry Pi\footcite{Raspberry_Pi_2016-04-24} verwendet. Dies ist ein Einplatinencomputer welches von der britischen Raspberry Pi Foundation entwickelt wurde. Der Vorteil daran ist, dass es weit verbreitet ist\footcite{Raspberry_Pi_Erfolgsgeschichte_2016-04-24} und viele Sensoren auf dem Markt gibt mit welchem man Daten sammeln kann\footcite{Raspberry_Pi_Sensor_2016-04-24}.
+Die Vorlesung zu diesem Semniar befasst sich mit den Konzepten der Funktionalen Programmierung. Zur Veranschaulichung dieser Konzepte wurde die Programmiersprache F\# des .NET-Frameworks verwendet. Aufgrund dessen haben wir uns entschieden auch dieses Seminar mit der uns nun bekannten Sprache F\# umzusetzen. Als \Gls{gls:iot} Gerät wird ein Raspberry Pi\footcite{Raspberry_Pi_2016-04-24} verwendet. Der Raspberry Pi ist ein Einplatinencomputer welcher von der britischen Raspberry Pi Foundation entwickelt wurde. Der Raspberry Pi bietet den Vorteil, dass er sehr weit verbreitet ist\footcite{Raspberry_Pi_Erfolgsgeschichte_2016-04-24}, er kostengünstig ist und es inzwischen eine sehr grosse Anzahl an Sensoren auf dem Markt gibt mit welchem man Daten sammeln kann\footcite{Raspberry_Pi_Sensor_2016-04-24}.
 
-\section{F\# mit dem Raspberry Pi}
-\label{sec:recherche:fsharprpi}
-Am 29 Februar 2016 ist das neue Model Raspberry Pi 3 auf dem Markt erschienen\footcite{Raspberry_Pi_3_2016-04-24}. Einige Zahlen zu dem Gerät:
+\section{Der Raspberry Pi}
+\label{sec:recherche:rpi}
+Wie bereits im vorangehenden Kapitel beschrieben, handelt es sich beim Raspberry Pi um einen Einplatinencomputer. Dieser Einplatinencomputer bietet verschiedene zentrale Hardware-Schnittstellen um externe Geräte für Input und Output anzuschliessen.
+
+Vom Raspberry PI gibt es folgende Modelle:
+\begin{itemize}
+\item Raspberry Pi Compute Module
+\item Raspberry Pi Zero
+\item Raspberry Pi Model A
+\item Raspberry Pi Model A+
+\item Raspberry Pi Model B
+\item Raspberry Pi Model B+
+\item Raspberry Pi 2 Model B
+\item Raspberry Pi 3 Model B
+\end{itemize}
+
+\todo{}Evtl. ein Bild / List mit Daten dazu?}
+
+Am 29 Februar 2016 ist die neuste Version, der Raspberry Pi 3 (Model B), auf dem Markt erschienen\footcite{Raspberry_Pi_3_2016-04-24}. Einige Zahlen zu dem Gerät:
 
 \begin{itemize}
 \item 1.2GHz 64-bit quad-core ARM Cortex-A53 CPU (~10x die Leistung eines Raspberry Pi 1 und 50-60\% die Leistung eines Raspberry Pi 2)
 \item Integriertes 802.11n wireless LAN und Bluetooth 4.1
-\item Komplette Kompatibilität zu dem Raspberry Pi 1 und 2
+\item Komplette Kompatibilität zu Raspberry Pi 1 und 2 (Model B)
 \end{itemize} 
 
-Um F\# auf dem Gerät laufen zu lassen, gibt es zwei Möglichkeiten, welche nachfolgend erläutert werden.
 
-\subsection{Raspbian mit Mono}
-Ein weit verbreitetes Betriebsystem für das Raspberry Pi ist das Raspbian\footcite{FrontPage_-_Raspbian_2016-04-24}. Bei dem Namen handelt es sich um eine Zusammenfassung von Raspberry und Debian. Demnach handelt es sich auch um eine Debian Distribution.
+\section{F\# mit dem Raspberry Pi}
+\label{sec:recherche:fsharprpi}
+Um F\# auf dem dem Raspberry PI auszuführen, gibt es grundsätzlich zwei Möglichkeiten, welche nachfolgend erläutert werden.
+Da es sich bei F\# um eine Sprache des Microsoft .NET-Frameworks handelt, wird für die Ausführung zwingend eine Implementierung des .NET-Frameworks benötigt.
 
-Um F\# auf dem Raspbian laufen zu lassen wird Mono benötigt\footcite{Mono_2016-04-24}. Dabei handelt es sich um eine Open Source implementierung von Microsoft's .NET Framework, welches für die Ausführung von F\# benötigt wird.
+\subsection{Linux (Raspbian)}
+Ein weit verbreitetes Betriebsystem für den Raspberry Pi ist das Raspbian\footcite{FrontPage_-_Raspbian_2016-04-24} OS. Bei dem Namen handelt es sich um eine Zusammenfassung von Raspberry und Debian. Demnach handelt es sich auch um eine Debian Distribution, welche spezifisch für den Raspberry Pi entwickelt wurde.
+
+\subsubsection{Mono-Framework}
+Eine Möglichkeit um unter Linux, beziehungsweise Raspbian, F\# auszuführen ist das Mono-Framework\footcite{Mono_2016-04-24}. Dabei handelt es sich um eine Open Source Implementierung von Microsoft's .NET Framework.
+
+\subsubsection{Mono-Framework + .NET Core}
+Eine weitere Möglichkeit besteht aus einer Kombination des aktuellen Mono-Frameworks und der aktuellen Open Source Implementierung für Linux von .NET Core von Microsoft.
+
 
 \subsection{Windows 10 IoT}
-Microsoft hat mit Windows 10 IoT eine Version ihres Betriebsystem herausgebracht, welches speziell für leistungsschwächere Geräte entwickelt wurde\footcite{Windows_IoT_2016-04-24}. Bei der IoT Version von Windows 10 it ein .NET Framework bereits vorhanden. Demnach sollte es keine Probleme darstellen F\# darauf laufen zu lassen.
+Microsoft hat mit Windows 10 IoT eine Version ihres Betriebssystem herausgebracht, welches speziell für leistungsschwächere Geräte entwickelt wurde\footcite{Windows_IoT_2016-04-24}. Bei der IoT Version von Windows 10 ist das .NET Framework bereits standardmässig an Bord. Demnach sollte es keine Probleme geben um F\# auf dieser Plattform zu betreiben.
 
-\section{Sensoren}
-Für den Raspberry Pi gibt es viele Sensoren auf dem Markt. Herauskristallisiert hat sich jedoch das Starter Kid GrovePi+\footcite{GrovePi_2016-04-24}. Dieses kommt mit einem Ton-, Temperatur-, Feuchtigkeit-, Lichts- und noch weiteren Sensoren. Vorteil an dem Kit ist es, dass es eine Library für .NET gibt mit welchem die Sensoren angesprochen werden können\footcite{NuGet_GrovePi_2016-04-24}.
 
-\section{Datenauswertung}
-Die von den Sensoren gespeicherten Daten werden in einem noch zu definierenden Format abgespeichert und danach für die Datenauswertung ausgelesen. Dafür wurde vom Dozenten die Library F# Data vorgeschlagen\footcite{Fsharp_Data_2016-04-24}. Diese kann Daten im Format CSV, HTML, JSON und XML entgegennehmen und für die Verwendung in F\# zur Verfügung stellen.
+
+
+
+
+
+\todo{Dokumentieren wir den SW-Setup der Hardware? Installationsanleitung?}
+

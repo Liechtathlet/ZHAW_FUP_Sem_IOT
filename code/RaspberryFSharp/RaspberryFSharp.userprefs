@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/Program.fsx">
     <Files>
-      <File FileName="Raspberry.FGrove/Program.fsx" Line="82" Column="40" />
+      <File FileName="Raspberry.FGrove/Program.fsx" Line="74" Column="1" />
+      <File FileName="Raspberry.FGrove/run.sh" Line="12" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

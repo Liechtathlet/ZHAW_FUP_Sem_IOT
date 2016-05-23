@@ -1,6 +1,12 @@
 ﻿<Properties StartupItem="Packages.mdproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.GrovePi/GrovePiWrapper.cs">
+    <Files>
+      <File FileName="Raspberry.GrovePi/GrovePiWrapper.cs" Line="82" Column="1" />
+      <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDeviceConnection.cs" Line="17" Column="36" />
+      <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDriver.cs" Line="258" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

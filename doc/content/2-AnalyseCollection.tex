@@ -1,0 +1,60 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = de_CH_frami
+
+\chapter{Sensordaten sammeln}
+Dieses Kapitel beschäftigt sich mit dem Teilprojekt der Sammlung von Sensordaten. Die Aufbereitung der gesammelten Daten ist Teil eines weiteren Kapitels.
+
+
+\section{Analyse \& Setup}
+\section{F\# auf dem Raspberry Pi}
+Im \cref{sec:recherche:fsharprpi} \nameref{sec:recherche:fsharprpi} wurden zwei Möglichkeiten aufgezeigt, welche es ermöglichen F\# auf einem Raspberry Pi laufen zu lassen.
+
+Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, da dort das benötigte .NET Framework Teil des Systems ist. In dieser Seminararbeit wurden bewusst beide Varianten (Linux (Raspbian) und Windows 10 IoT) ausprobiert und getestet. Die folgenden Abschnitte erläutern den Setup und die Erkenntnisse aus dem Test der beiden Varianten. 
+
+\subsection{Linux (Raspbian Jessie)}
+Die Installation und der Betrieb des Mono-Frameworks unter Linux, beziehungsweise Raspbian Jessie, ist ohne grossen Aufwand möglich. Die Installation erfolgt über die bereitgestellten Packages aus dem Software-Repository.
+
+\todo{Machen wir hier eine detailliertere Setup Anleitung?}
+
+\subsubsection{Mono-Framework}
+Abgesehen von der bereits erfolgten Konfiguration sind keine weiteren Installationen oder Konfigurationen notwendig. Mit diesem Basis-Setup kann F\# auf dem Raspberry Pi betrieben werden.
+
+**Wichtigste Erkenntnisse:**
+\begin{itemize}
+\item Die NuGet Library für den Zugriff auf GrovePi\footcite{NuGet_GrovePi_2016-04-24} benötigt zwingend eine Implementation der Microsoft .NET Core Frameworks 5.0. Darüber hinaus verwendet die Library Elemente der "`Universal Windows Platform"'.
+\end{itemize}
+
+**Weitere Möglichkeiten:**
+
+\subsubsection{Mono-Framework + .NET Core}
+  - .NET Core aktuell nur für 64bit
+  - Raspberry PI OS sind praktisch alle 32bit
+  - GrovePi NuGet Library verwendet .NET Core native (Windows only)
+  - https://github.com/raspberry-sharp/raspberry-sharp-io
+
+\subsection{Windows 10 IoT}
+Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
+
+Die Installation gemäss der Anleitung auf dem Github Account from Microsoft\footcite{install_win10iot_2016-04-25} war nicht erfolgreich. 
+Der Raspberry Pi startete nicht und blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. 
+Mit dem NOOBS\footcite{NOOBS_2016-04-25} Installer, welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird, war die installation von Windows 10 Io
+
+
+\section{Umsetzung}
+
+\subsection{Verwendete Software}
+Für die Realisierung werden folgende Softwarekomponenten verwendet:
+
+\begin{itemize}
+\item Raspbian Jessie
+\item GrovePi Firmware + Beispiele
+\item Mono 4.2
+\end{itemize}
+
+
+
+
+\subsection{Datenauswertung}
+Die von den Sensoren gespeicherten Daten werden in einem noch zu definierenden Format abgespeichert und danach für die Datenauswertung ausgelesen. Dafür wurde vom Dozenten die Library F\# Data vorgeschlagen\footcite{Fsharp_Data_2016-04-24}. Diese kann Daten im Format CSV, HTML, JSON und XML entgegennehmen und für die Verwendung in F\# zur Verfügung stellen.
+
+

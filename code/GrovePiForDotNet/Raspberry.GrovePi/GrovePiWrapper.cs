@@ -64,12 +64,12 @@ namespace Raspberry.GrovePi
 			// GIT: https://github.com/DexterInd/GrovePi/blob/1c16948fc3d747eada2ac326280e7d60bd0ebb25/Software/CSharp/GrovePi/Sensors/DHTTemperatureAndHumiditySensor%20.cs
 			// Spec: http://www.seeedstudio.com/wiki/Grove_-_Temperature_and_Humidity_Sensor
 
-			// Sensor-Pin: A1
+			// Sensor-Pin: D3
 
 			byte[] ret;
 			lock (_locker) {
-				//Action:40, Pin: 1, DHT-Model: 0, Unused
-				connection.Write (new[] { (byte)40, (byte)1, (byte)0, (byte)0 });
+				//Dummy, Action:40, Pin: 3, DHT-Model: 0, Unused
+				connection.Write (new[] { (byte)1, (byte)40, (byte)3, (byte)0, (byte)0 });
 				Thread.Sleep (600);
 
 				//Read sensor value (3 bytes, use the last 2)
@@ -77,10 +77,8 @@ namespace Raspberry.GrovePi
 			}
 			//Convert to int
 			//return ((ret[1]*256) + ret[2]);
-
 			double t = (double)BitConverter.ToSingle (ret, 1);
 			double h = (double)BitConverter.ToSingle (ret, 5);
-
 			return Tuple.Create (t, h);
 		}
 			/// <summary>

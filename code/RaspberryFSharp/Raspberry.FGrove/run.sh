@@ -15,9 +15,10 @@ stop() {
 
 trap_with_arg 'stop' EXIT SIGINT SIGTERM SIGHUP
 
-(python "/home/pi/GrovePi/Software/Python/grove_led_blink.py") & sleep 3 ; kill $!
+(python "/home/pi/GrovePi/Software/Python/grove_led_blink.py") & sleep 5 ; kill $!
 
 cd "/home/pi/Development/FUP/Raspberry.FGrove/data"
 
 python -m SimpleHTTPServer 8000 &
+cd "/home/pi/Development/FUP/Raspberry.FGrove/"
 fsharpi --lib:/home/pi/Development/FUP/Raspberry.FGrove/libs "/home/pi/Development/FUP/Raspberry.FGrove/Program.fsx"

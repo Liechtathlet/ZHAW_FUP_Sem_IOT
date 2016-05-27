@@ -15,13 +15,28 @@ Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, d
 Die Installation und der Betrieb des Mono-Frameworks unter Linux, beziehungsweise Raspbian Jessie, ist ohne grossen Aufwand möglich. Die Installation erfolgt über die bereitgestellten Packages aus dem Software-Repository.
 
 \todo{Machen wir hier eine detailliertere Setup Anleitung?}
+\subsection{1: Installation \& Konfiguration von Raspbian Jessie}
+
+\subsection{2: Installation des Mono-Frameworks \& F\#}
+
+\subsection{3: Installation \& Konfiguration GrovePi}
+
+\subsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
+\footcite{NuGet_GrovePi_2016-04-24}
+
+Nicht Aussagekräftige Fehlermeldung -> .NET Framework 5
+
+\subsection{5: Installation von .NET Core}
+Problem: Version Manager, Build-System
+
+\subsection{6: Finaler Setup}
 
 \subsubsection{Mono-Framework}
 Abgesehen von der bereits erfolgten Konfiguration sind keine weiteren Installationen oder Konfigurationen notwendig. Mit diesem Basis-Setup kann F\# auf dem Raspberry Pi betrieben werden.
 
 **Wichtigste Erkenntnisse:**
 \begin{itemize}
-\item Die NuGet Library für den Zugriff auf GrovePi\footcite{NuGet_GrovePi_2016-04-24} benötigt zwingend eine Implementation der Microsoft .NET Core Frameworks 5.0. Darüber hinaus verwendet die Library Elemente der "`Universal Windows Platform"'.
+\item Die NuGet Library für den Zugriff auf GrovePi benötigt zwingend eine Implementation der Microsoft .NET Core Frameworks 5.0. Darüber hinaus verwendet die Library Elemente der "`Universal Windows Platform"'.
 \end{itemize}
 
 **Weitere Möglichkeiten:**

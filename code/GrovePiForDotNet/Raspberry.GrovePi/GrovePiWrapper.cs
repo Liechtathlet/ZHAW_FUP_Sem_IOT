@@ -90,7 +90,6 @@ namespace Raspberry.GrovePi
 			// Spec: http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor
 
 			// Sensor-Pin: A2
-
 			byte[] ret;
 			lock (_locker) {
 				//Dummy, Action:Read, Pin: 2, Unused, Unused
@@ -102,7 +101,8 @@ namespace Raspberry.GrovePi
 			}
 			//Convert to int
 			//((ret[1]*256) + ret[2]);
-			int sensorValue =  BitConverter.ToInt32(ret,1);
+
+			int sensorValue =  ((ret[1]*256) + ret[2]);
 			float lightIntensity = (float)(1023-sensorValue)*10/sensorValue;
 
 			return Tuple.Create(sensorValue,lightIntensity);

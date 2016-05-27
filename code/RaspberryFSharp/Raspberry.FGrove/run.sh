@@ -22,3 +22,15 @@ cd "/home/pi/Development/FUP/Raspberry.FGrove/data"
 python -m SimpleHTTPServer 8000 &
 cd "/home/pi/Development/FUP/Raspberry.FGrove/"
 fsharpi --lib:/home/pi/Development/FUP/Raspberry.FGrove/libs "/home/pi/Development/FUP/Raspberry.FGrove/Program.fsx"
+
+
+screen -S rpfs
+python -m SimpleHTTPServer 8000 &
+Ctrl + a + c (create new window)
+sudo fsharpi --lib:/home/pi/Development/FUP/Raspberry.FGrove/libs "/home/pi/Development/FUP/Raspberry.FGrove/Program.fsx"
+ctrl + a + d (dettach)
+
+screen -r rpfs
+ctrl + a + n (switch between consoles)
+
+ctrl + a + k (end session)

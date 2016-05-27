@@ -1,9 +1,9 @@
 ﻿<Properties StartupItem="FGrovePiTest/FGrovePiTest.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/Program.fsx">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/run.sh">
     <Files>
-      <File FileName="Raspberry.FGrove/Program.fsx" Line="74" Column="1" />
-      <File FileName="Raspberry.FGrove/run.sh" Line="12" Column="50" />
+      <File FileName="Raspberry.FGrove/Program.fsx" Line="68" Column="24" />
+      <File FileName="Raspberry.FGrove/run.sh" Line="31" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

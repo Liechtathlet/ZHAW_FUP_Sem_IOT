@@ -16,36 +16,65 @@ Die Installation und der Betrieb des Mono-Frameworks unter Linux, beziehungsweis
 
 \todo{Machen wir hier eine detailliertere Setup Anleitung?}
 \subsection{1: Installation \& Konfiguration von Raspbian Jessie}
+Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software) verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren.
 
+% NOOBS: https://www.raspberrypi.org/documentation/installation/noobs.md
+
+% WLAN-Problem (IPv6)
 \subsection{2: Installation des Mono-Frameworks \& F\#}
+Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert.
 
 \subsection{3: Installation \& Konfiguration GrovePi}
+Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten Anleitung durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
+% Install Instructions: http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/
+
+% Probleme: Clone Repo, git repo nicht von überall erreichbar (Timeout)
 
 \subsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
-\footcite{NuGet_GrovePi_2016-04-24}
+Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des .NET Frameworks.
 
-Nicht Aussagekräftige Fehlermeldung -> .NET Framework 5
+\subsubsection{.NET Core}
+\todo{Kurze Beschreibung / Hintergrund zu .NET}
+% https://de.wikipedia.org/wiki/.NET_Framework
+
+.NET Core ist der nächste grosse Evolutionsschritt des .NET Frameworks.
+
+-Open Source, .NET Framework Implementation, Plattformneutral, Portabel, im Gegensatz zum klassischen .NET Framework: modular
+-.NET core apps: run on 32-bit and 64-bit
+
+
+%https://de.wikipedia.org/wiki/.NET_Core
+%https://www.dotnetfoundation.org/netcore
+% https://dotnet.github.io/
+% https://dotnet.github.io/docs/getting-started/what-is-dotnet.html
+% https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
 
 \subsection{5: Installation von .NET Core}
-Problem: Version Manager, Build-System
+Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry zu installieren.
 
+
+Problem: Version Manager, Build-System
+dnx, dnvm
+%  https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
+ % - http://docs.asp.net/en/latest/getting-started/installing-on-linux.html
+  %- http://docs.asp.net/en/latest/dnx/projects.html
+  %- https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
+  %- https://github.com/robsonj/GrovePi
+  %- http://oren.codes/2015/07/29/targeting-net-core/
+  %- http://www.paraesthesia.com/archive/2015/10/20/gotcha-with-dnx-dependency-resolution-dotnet-pcl/
+  %- http://davidfowl.com/diagnosing-dependency-issues-with-asp-net-5/
+  %- https://github.com/mrward/monodevelop-dnx-addin
+  %- http://dotnet.github.io/docs/getting-started/installing/installing-core-linux.html
+  %- https://www.dotnet.xyz/tutorials/net-core-unter-linux-raspberry-pi/
+  %- https://www.hackster.io/9381/grove-pi-windows-iot-getting-started-94bf38
+  
+    - .NET Core aktuell nur für 64bit
+    - Raspberry PI OS sind praktisch alle 32bit
+    - GrovePi NuGet Library verwendet .NET Core native (Windows only)
+    - https://github.com/raspberry-sharp/raspberry-sharp-io
 \subsection{6: Finaler Setup}
 
-\subsubsection{Mono-Framework}
-Abgesehen von der bereits erfolgten Konfiguration sind keine weiteren Installationen oder Konfigurationen notwendig. Mit diesem Basis-Setup kann F\# auf dem Raspberry Pi betrieben werden.
 
-**Wichtigste Erkenntnisse:**
-\begin{itemize}
-\item Die NuGet Library für den Zugriff auf GrovePi benötigt zwingend eine Implementation der Microsoft .NET Core Frameworks 5.0. Darüber hinaus verwendet die Library Elemente der "`Universal Windows Platform"'.
-\end{itemize}
-
-**Weitere Möglichkeiten:**
-
-\subsubsection{Mono-Framework + .NET Core}
-  - .NET Core aktuell nur für 64bit
-  - Raspberry PI OS sind praktisch alle 32bit
-  - GrovePi NuGet Library verwendet .NET Core native (Windows only)
-  - https://github.com/raspberry-sharp/raspberry-sharp-io
 
 \subsection{Windows 10 IoT}
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.

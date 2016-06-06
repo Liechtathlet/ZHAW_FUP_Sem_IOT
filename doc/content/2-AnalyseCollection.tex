@@ -28,17 +28,17 @@ sudo apt-get install mono-complete fsharp
 \subsubsection{3: Installation \& Konfiguration GrovePi}
 Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
 
-\textbf{Schwierigkeiten}\linebreak
+\textbf{Schwierigkeiten}\\
 Bei der Installation musste ein Git-Repository des Herstellers geklont werde. Dieses beinhaltet die Firmeware und verschiedenste Code-Beispiele und Beispiel Scripts. Das Repository scheint jedoch von gewissen Netzwerkknoten nicht erreichbar zu sein. Das Repository konnte nur im Netzwerk der \gls{acr:ZHAW} geklont werden.
 
-\textbf{Testsetup}\linebreak
+\textbf{Testsetup}\\
 Die Installation und Konfiguration des GrovePi wurde über ein Testsetup mit Hilfe einer einfachen LED und eines mitgelieferten Python-Scripts getestet.
 
 
 \subsubsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
 Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
 
-\textbf{.NET Core}\linebreak
+\textbf{.NET Core}\\
 Ursprünglich war es geplant .NET Core als "`.NET Framework Version 5"' auszurollen. Inzwischen wurde von Microsoft entschieden, .NET Core unter einer eigenständigen Versionsnummer zu führen (Ausgehend davon war die im vorangehenden Abschnitt beschriebene Fehlermeldung nicht mehr korrekt.).
 
 Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
@@ -55,16 +55,15 @@ Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
 \item Runtime wird als NuGet Package ausgeliefert
 \end{itemize}
 \item Default Compiler für x64: "`Roslyn"' just-in-time Compiler
-\item Runtimes: Core CLR, .NET native runtime: ..., others...
-\item Hauptkomponenten: .NET Framework  (ASP.NET 5, ASP.NET 4, WPF, ...), .NET Core (ASP.NET 5, .NET Native, ASP.NET for Mac and Linux)
+\item Verfügbare Runtime Varianten: .Net Native (Windows Only), Core CLR (Common Language Runtime, Multiplattform), Weitere ...
 \end{itemize}
 
-\todo{Kurze Beschreibung / Hintergrund zu .NET}
-%https://de.wikipedia.org/wiki/.NET_Core
-%https://www.dotnetfoundation.org/netcore
-% https://dotnet.github.io/
-% https://dotnet.github.io/docs/getting-started/what-is-dotnet.html
-% https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
+Die nachfolgende Grafik zeigt eine grobe Übersicht über das .NET Framework und .NET Core:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=15cm]{./images/UnderstandingNetCore}
+  \captionsource{Übersicht .NET Framework \& .NET Core}{\url{https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/}}
+\end{figure}
 
 \subsubsection{5: Installation von .NET Core}
 Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry Pi zu installieren. Zur Zeit zu dem dieser Setup durchgeführt wurden, existierten keine offiziellen Microsoft-Quellen zur Installation von .NET Core unter Linux.
@@ -109,7 +108,7 @@ dnx, dnvm
 
 
 
-\subsection{Windows 10 IoT}
+\subsection{Variante 2: Windows 10 IoT}
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
 Die Installation gemäss der Anleitung auf dem Github Account from Microsoft\footcite{install_win10iot_2016-04-25} war nicht erfolgreich. 
@@ -135,10 +134,10 @@ Für die Realisierung wurden nachfolgend aufgelisteten Hardware-Komponenten verw
 \item Raspberry Pi 3 Model B
 \item GrovePi Sensoren
 \begin{itemize}
-\item Temperature \& Humidity Sensor
-\item Sound Sensor
-\item Light Sensor
-\item Blue LED
+\item Temperature \& Humidity Sensor (Grove Pi Port D3)
+\item Sound Sensor (Grove Pi Port A0)
+\item Light Sensor (Grove Pi Port A2)
+\item Blue LED (Grove Pi Port D4)
 \end{itemize}
 \end{itemize}
 
@@ -153,26 +152,246 @@ Für die Realisierung werden folgende Softwarekomponenten verwendet:
 \end{itemize}
 
 \subsection{Dokumentation der Implementation}
-Verweis auf eigenen Abschnit.
+Die konkrete Implementation der Problemstellung "`Sensordaten sammeln"' wird im Abschnitt \ref{sec:AnalyseCollection:ImplDoc} \nameref{sec:AnalyseCollection:ImplDoc} dokumentiert.
 
 \subsection{Datentransfer zum Raspberry Pi}
-scp
+Die kompilierten Sourcen wurden via Linux-Befehl "`scp"' auf den Raspberry Pi übertragen.
+
+\begin{lstlisting}
+scp -rp ./Raspberry.FGrove pi@raspberrypi.local:/home/pi/Development/FUP/
+\end{lstlisting}
 
 \subsection{Datentransfer vom Raspberry Pi}
-Wifi, Python HTTP
+Der Datentransfer vom Raspberry Pi wurde durch einen einfachen HTTP-Server auf Python-Basis bewerkstelligt. Python wurde bei der Installation des GrovePi automatisch mitinstalliert. Dadurch konnten wir den "`SimpleHTTPServer"' nutzen, welcher standardmässig mit Python ausgeliefert wird.
 
-\subsection{Starten der Applikation}
-screen
+\begin{lstlisting}
+python -m SimpleHTTPServer 8000
+\end{lstlisting}
 
 
-\section{Dokumentation der Implementation}
+\subsection{Betrieb \& Starten der Applikation}
+Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand von Anleitungen von \hyperlink{http://lcdev.dk/2012/11/18/raspberry-pi-tutorial-connect-to-wifi-or-create-an-encrypted-dhcp-enabled-ad-hoc-network-as-fallback/}{Lasse Christiansen} und \hyperlink{http://slicepi.com/creating-an-ad-hoc-network-for-your-raspberry-pi/}{cpetty33} durchgeführt.
+
+
+Mit diesem Setup kann nun jederzeit auf den Raspberry Pi zugegriffen und entweder die Anwendung gestartet / gestoppt oder die Daten heruntergeladen werden.
+
+Für den Start der Anwendung musste ein zusätzliches Tool namens "`screen"' installiert werden. Mit diesem Tool ist es einfach möglich mehrere Hintergrundverarbeitungen zu starten, welche nicht automatisch beendet werden, wenn die aktuelle Session (SSH-Verbindung) beendet wird.
+
+\textbf{Start der Anwendung}
+\begin{lstlisting}
+ssh pi@raspberrypi.local (SSH into Raspberry Pi))
+screen -S rpfs (create new screen session "`rpfs"')
+python -m SimpleHTTPServer 8000 (start Python HTTP-Server)
+Ctrl + a + c (create new window in current screen session)
+sudo fsharpi --lib:/home/pi/Development/FUP/Raspberry.FGrove/libs "/home/pi/Development/FUP/Raspberry.FGrove/Program.fsx" (start F\# application)
+ctrl + a + d (detach from current screen session)
+\end{lstlisting}
+
+\textbf{Beenden der Anwendung}
+\begin{lstlisting}
+ssh pi@raspberrypi.local (SSH into Raspberry Pi))
+screen -r rpfs (attach to the existing screen session "`rpfs"')
+ctrl + c (terminate F\# application)
+exit (close current window in screen session)
+ctrl + c (terminate Python HTTP-Server)
+exit (closes current window and screen session)
+\end{lstlisting}
+
+\section{Dokumentation der Implementation}\label{sec:AnalyseCollection:ImplDoc}
+Nachfolgend werden die wichtigsten Punkte der einzelnen Komponenten dokumentiert.
+
 \subsection{Komponenten}
+Die Anwendung besteht aus folgenden Teilkomponenten:
+\begin{itemize}
+\item Raspberry.IO.InterIntegratedCircuit (C\# Library)
+\item Raspberry.GrovePi (C\# Library)
+\item Raspberry.FGrove (F\# Applikation)
+\end{itemize}
 
-I2CLib
-C\# Wrapper
+\subsection{Source Code}
+Der Source Code wird in folgendem Git-Repository verwaltet: \hyperlink{https://github.com/Liechtathlet/FUP_Sem_IOT}{FUP\_Sem\_IOT}
 
-F\# Programm
+\subsection{Raspberry.IO.InterIntegratedCircuit (C\# Library)}
+Bei dieser Komponente handelt es sich um einen Klon / Fork der Teilkomponente "`Raspberry.IO.InterIntegratedCircuit"' des Git-Repositorys \hyperlink{https://github.com/raspberry-sharp/raspberry-sharp-io/tree/master/Raspberry.IO.InterIntegratedCircuit}{raspberry-sharp-io} von \hyperlink{https://github.com/raspberry-sharp}{Raspberry\#}.
+
+Diese Library ist aktuell nicht als NuGet-Packet verfügbar und wurde spezifisch für .NET unter Mono optimiert. Die Library verwendet die NuGet-Packete "`Raspberry.IO.GeneralPurpose"' und "`Raspberry.System"', welche von Raspberry\# veröffentlicht und im genannten Git-Repository gepflegt werden.
+
+Das Ziel dieser Library ist es, den Zugriff auf den \gls{acr:I2C}-Bus des Raspberry Pi zu abstrahieren / vereinfachen.
+
+\subsection{Raspberry.GrovePi (C\# Library)}
+Diese Komponente stellt unter Verwendung der Library "`Raspberry.IO.InterIntegratedCircuit"' spezifische Funktionalitäten für den Zugriff auf den GrovePi via \gls{acr:I2C} zur Verfügung.
+
+Die Library besteht aus einer einzigen Wrapper-Klasse, welche die \gls{acr:I2C} und Grove Pi spezifischen Elemente für die eingesetzten Sensoren abstrahiert. Über den \gls{acr:I2C}-Bus müssen spezifische Befehle gesendet werden, um die gewünschten Sensordaten auszulesen. Diese Befehle werden von einem Arduino auf dem Grove Pi Board interpretiert und verarbeitet. Die zulässigen Befehlssequenzen wurden den Hersteller-Dokumentationen entnommen.
+
+\begin{itemize}
+\item \hyperlink{https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/the-gpio-connector}{Raspberry Pi GPIO Connector}
+\item \hyperlink{http://www.dexterindustries.com/GrovePi/engineering/port-description/}{Grove Pi Port Description}
+\item \hyperlink{http://www.dexterindustries.com/GrovePi/programming/grovepi-protocol-adding-custom-sensors/}{GrovePi Protocol and Adding Custom Sensors}
+\item \hyperlink{https://github.com/DexterInd/GrovePi/blob/bfcaa57bb6ce2b5c4cb0057569ea38f3574f24cf/Firmware/Source/v1.2/grove_pi_v1_2_6/README.md}{Grove Pi Firmware Documentation}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Sound_Sensor}{Grove Pi Sound Sensor}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Temperature_and_Humidity_Sensor}{Grove Pi Temperature \& Humidity Sensor}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor}{Grove Pi Light Sensor}
+\end{itemize}
 
 
+Nachfolgend werden die verwendeten Befehlsfolgen aufgezeigt:
+
+\textbf{I2C auf dem Raspberry}
+\begin{lstlisting}
+SDA-Pin: P1Pin03 (Nummer des SDA GPIO-Pins auf dem Raspberry Pi Board, notwendig für I2C, Data-Line)
+SCL-Pin: P1Pin05 (Nummer des SCL GPIO-Pins auf dem Raspberry Pi Board, notwendig für I2C, Clock-Line)
+I2C Device Address: 0x04
+\end{lstlisting}
+
+\textbf{Allgemeines Befehlsschema}
+\begin{lstlisting}
+Byte 0: 1 (Dummy, statischer Wert)
+Byte 1: Command (ID der auszuführenden Aktion)
+Byte 2: Pin (Nummer des anzusprechenden Pin auf dem GrovePi)
+Byte 3: Data (Optional, Input-Daten)
+Byte 4: Data (Optional, Input-Daten)
+\end{lstlisting}
+
+\textbf{Sound / Noise Sensor}
+\begin{lstlisting}
+Byte 0: 1 (Dummy)
+Byte 1: 3 (Command: Analog-Read)
+Byte 2: 0 (Pin: 0)
+Byte 3: 0
+Byte 4: 0
+Result: 3 bytes (Sensordaten: Umgebungslautstärke)
+\end{lstlisting}
+
+\textbf{Temperature \& Humidity Sensor}
+\begin{lstlisting}
+Byte 0: 1 (Dummy)
+Byte 1: 40 (Command: Read DHT-Sensor)
+Byte 2: 3 (Pin: 3)
+Byte 3: 0
+Byte 4: 0
+Result: 9 bytes (Sensordaten: Temperatur, Luftfeuchtigkeit)
+\end{lstlisting}
+
+\textbf{Light Sensor}
+\begin{lstlisting}
+Byte 0: 1 (Dummy)
+Byte 1: 3 (Command: Analog-Read)
+Byte 2: 2 (Pin: 2)
+Byte 3: 0
+Byte 4: 0
+Result: 3 bytes (Sensordaten: Helligkeit / Lichtintensität)
+\end{lstlisting}
 
 
+\textbf{LED (On)}
+\begin{lstlisting}
+Byte 0: 1 (Dummy)
+Byte 1: 2 (Command: Digital-Write)
+Byte 2: 4 (Pin: 4)
+Byte 3: 1 (Data: On)
+Byte 4: 0
+Result: -
+\end{lstlisting}
+
+\textbf{LED (Off)}
+\begin{lstlisting}
+Byte 0: 1 (Dummy)
+Byte 1: 2 (Command: Digital-Write)
+Byte 2: 4 (Pin: 4)
+Byte 3: 0 (Data: Off)
+Byte 4: 0
+Result: -
+\end{lstlisting}
+
+
+Der GrovePi verarbeitet die eingehenden Befehle sequentiell. Damit sichergestellt ist, dass zum abgesetzten Befehl auch die korrekten Daten zurückgeliefert werden, wurde der Lock-Mechanismus von C\# verwendet. Dadurch wird der Zugriff auf den GrovePi so eingeschränkt, dass kein simultaner Zugriff mehr möglich ist.
+
+\begin{lstlisting}
+// Byte-Array for results
+byte[] ret; 
+
+// Create lock, if locked: wait till lock is released
+lock (_locker) { 
+	// Send command to Grove Pi
+	connection.Write (new[] { (byte)1, (byte)3, (byte)2, (byte)0, (byte)0 }); 
+	
+	// Wait a few ms (allows the arduino to collect the data)
+	Thread.Sleep (10); 
+	
+	// Read the response
+	ret = connection.Read (3); 
+	
+// release the lock
+} 
+\end{lstlisting}
+
+
+\subsection{Raspberry.FGrove (F\# Applikation)}
+Diese Komponente realisiert die Kern-Logik der Anwendung, die Sammlung und Speicherung der Sensordaten. Dazu wird die implementierte C\# Library "`Raspberry.GrovePi"' verwendet.
+
+Pro Sensor wurde ein eigenständiger Timer implementiert, welche periodisch gestartet und anschliessend zurückgesetzt wird. Pro Timer wurde ein Event-Listener registriert, welcher die spezifischen Sensordaten ausliest und anschliessend in ein \gls{acr:CSV}-File schreibt.
+
+Nachfolgend wird die Implementation exemplarisch für den "`Sound Sensor"' aufgezeigt:
+\begin{lstlisting}
+// Create timer for sound / noise sensor
+let nTimer, nEventStream = startTimerAndCreateObservable 100 
+
+// Subscribe to event
+nEventStream |> Observable.subscribe (fun _ -> processNoiseEvent())
+\end{lstlisting}
+
+\textbf{startTimerAndCreateObservable}
+\begin{lstlisting}
+// Creates and starts a new timer and returns an observable event
+let startTimerAndCreateObservable timerInterval =
+    // Setup timer
+    let timer = new System.Timers.Timer(float timerInterval)
+
+    // Autoreset and enable
+    timer.AutoReset <- true
+    timer.Enabled <- true
+
+    // Return observable event
+    (timer,timer.Elapsed)
+\end{lstlisting} 
+
+\textbf{writeData}
+\begin{lstlisting}
+// Writes the sensordata to a file. If the file doesn't exists it will be created. Otherwise the data will be appended to the end of the file.
+let writeData suffix (data:String) (date:DateTime) (location:String) = 
+    let filepath = "./data/SensorData-" + suffix + ".csv"
+
+    if not(File.Exists(filepath)) then
+        printfn "Data-File doesn't exists, creating file"
+        use streamWriter = new StreamWriter(filepath,false)
+        streamWriter.WriteLine "Date;Time;SensorData;Location"
+        streamWriter.Flush()
+        streamWriter.Close()
+
+    use streamWriter = new StreamWriter(filepath,true)
+    [ date.ToString("dd.MM.yyyy");
+      date.ToString("hh:mm:ss.fff");
+      data;
+      location]
+    |> List.fold (fun r s -> r + s + ";") ""
+    |> streamWriter.WriteLine
+
+    streamWriter.Flush()
+    streamWriter.Close()
+\end{lstlisting} 
+
+\textbf{readNoiseSensor}
+\begin{lstlisting}
+// Reads the data from the sound / noise sensor. 
+let readNoiseSensor() = 
+	grovePiWrapper.readNoiseSensorData()
+\end{lstlisting}  
+   
+   
+\textbf{processNoiseEvent}
+\begin{lstlisting}
+// Processes the timer event for the sound / noise sensor.
+let processNoiseEvent() =
+     let sensorValue = readNoiseSensor()
+     writeData "N" (sensorValue.ToString()) DateTime.Now currentLocation
+\end{lstlisting}

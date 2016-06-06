@@ -72,7 +72,7 @@ namespace Raspberry.GrovePi
 				connection.Write (new[] { (byte)1, (byte)40, (byte)3, (byte)0, (byte)0 });
 				Thread.Sleep (600);
 
-				//Read sensor value (3 bytes, use the last 2)
+				//Read sensor value (9 bytes)
 				ret = connection.Read (9);
 			}
 			//Convert to int
@@ -111,10 +111,12 @@ namespace Raspberry.GrovePi
 		public void blink(int ms){
 			//Digital Pin: D4
 
-			//Dummy, Action, Pin, Data, Data
-			connection.Write (new[] { (byte)1, (byte)2, (byte)4, (byte)1, (byte)0 });
-			Thread.Sleep (ms);
-			connection.Write (new[] { (byte)1, (byte)2, (byte)4, (byte)0, (byte)0 });
+			lock (_locker) {
+				//Dummy, Action, Pin, Data, Data
+				connection.Write (new[] { (byte)1, (byte)2, (byte)4, (byte)1, (byte)0 });
+				Thread.Sleep (ms);
+				connection.Write (new[] { (byte)1, (byte)2, (byte)4, (byte)0, (byte)0 });
+			}
 
 		}
 	}

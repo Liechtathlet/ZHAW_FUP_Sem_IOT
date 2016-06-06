@@ -5,74 +5,107 @@
 Dieses Kapitel beschäftigt sich mit dem Teilprojekt der Sammlung von Sensordaten. Die Aufbereitung der gesammelten Daten ist Teil eines weiteren Kapitels.
 
 
-\section{Analyse \& Setup}
 \section{F\# auf dem Raspberry Pi}
 Im \cref{sec:recherche:fsharprpi} \nameref{sec:recherche:fsharprpi} wurden zwei Möglichkeiten aufgezeigt, welche es ermöglichen F\# auf einem Raspberry Pi laufen zu lassen.
 
 Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, da dort das benötigte .NET Framework Teil des Systems ist. In dieser Seminararbeit wurden bewusst beide Varianten (Linux (Raspbian) und Windows 10 IoT) ausprobiert und getestet. Die folgenden Abschnitte erläutern den Setup und die Erkenntnisse aus dem Test der beiden Varianten. 
 
-\subsection{Linux (Raspbian Jessie)}
-Die Installation und der Betrieb des Mono-Frameworks unter Linux, beziehungsweise Raspbian Jessie, ist ohne grossen Aufwand möglich. Die Installation erfolgt über die bereitgestellten Packages aus dem Software-Repository.
+\subsection{Variante 1: Raspbian Jessie}
+\subsubsection{1: Installation \& Konfiguration von Raspbian Jessie}
+Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software) verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die \hyperlink{https://www.raspberrypi.org/documentation/installation/noobs.md}{Anleitung} verwendet.
 
-\todo{Machen wir hier eine detailliertere Setup Anleitung?}
-\subsection{1: Installation \& Konfiguration von Raspbian Jessie}
-Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software) verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren.
+Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationen notwendig (z.B. Konfiguration des WLAN, Deaktivierung von IPv6 in einem IPv4 Netzwerk).
 
-% NOOBS: https://www.raspberrypi.org/documentation/installation/noobs.md
 
-% WLAN-Problem (IPv6)
-\subsection{2: Installation des Mono-Frameworks \& F\#}
+\subsubsection{2: Installation des Mono-Frameworks \& F\#}
 Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert.
 
-\subsection{3: Installation \& Konfiguration GrovePi}
-Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten Anleitung durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
-% Install Instructions: http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/
+\begin{lstlisting}
+sudo apt-get install mono-complete fsharp
+\end{lstlisting}
 
-% Probleme: Clone Repo, git repo nicht von überall erreichbar (Timeout)
 
-\subsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
-Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des .NET Frameworks.
+\subsubsection{3: Installation \& Konfiguration GrovePi}
+Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
 
-\subsubsection{.NET Core}
+\textbf{Schwierigkeiten}\linebreak
+Bei der Installation musste ein Git-Repository des Herstellers geklont werde. Dieses beinhaltet die Firmeware und verschiedenste Code-Beispiele und Beispiel Scripts. Das Repository scheint jedoch von gewissen Netzwerkknoten nicht erreichbar zu sein. Das Repository konnte nur im Netzwerk der \gls{acr:ZHAW} geklont werden.
+
+\textbf{Testsetup}\linebreak
+Die Installation und Konfiguration des GrovePi wurde über ein Testsetup mit Hilfe einer einfachen LED und eines mitgelieferten Python-Scripts getestet.
+
+
+\subsubsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
+Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
+
+\textbf{.NET Core}\linebreak
+Ursprünglich war es geplant .NET Core als "`.NET Framework Version 5"' auszurollen. Inzwischen wurde von Microsoft entschieden, .NET Core unter einer eigenständigen Versionsnummer zu führen (Ausgehend davon war die im vorangehenden Abschnitt beschriebene Fehlermeldung nicht mehr korrekt.).
+
+Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
+\begin{itemize}
+\item Hoher Grad an Portabilität
+\begin{itemize}
+\item Plattformunabhängigkeit
+\item Architekturunabhängigkeit (32-Bit / 64-Bit)
+\end{itemize}
+\item Open Source Implementation
+\item Kleine und optimierte Runtime
+\begin{itemize}
+\item Modularer Aufbau
+\item Runtime wird als NuGet Package ausgeliefert
+\end{itemize}
+\item Default Compiler für x64: "`Roslyn"' just-in-time Compiler
+\item Runtimes: Core CLR, .NET native runtime: ..., others...
+\item Hauptkomponenten: .NET Framework  (ASP.NET 5, ASP.NET 4, WPF, ...), .NET Core (ASP.NET 5, .NET Native, ASP.NET for Mac and Linux)
+\end{itemize}
+
 \todo{Kurze Beschreibung / Hintergrund zu .NET}
-% https://de.wikipedia.org/wiki/.NET_Framework
-
-.NET Core ist der nächste grosse Evolutionsschritt des .NET Frameworks.
-
--Open Source, .NET Framework Implementation, Plattformneutral, Portabel, im Gegensatz zum klassischen .NET Framework: modular
--.NET core apps: run on 32-bit and 64-bit
-
-
 %https://de.wikipedia.org/wiki/.NET_Core
 %https://www.dotnetfoundation.org/netcore
 % https://dotnet.github.io/
 % https://dotnet.github.io/docs/getting-started/what-is-dotnet.html
 % https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
 
-\subsection{5: Installation von .NET Core}
-Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry zu installieren.
+\subsubsection{5: Installation von .NET Core}
+Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry Pi zu installieren. Zur Zeit zu dem dieser Setup durchgeführt wurden, existierten keine offiziellen Microsoft-Quellen zur Installation von .NET Core unter Linux.
 
+Um .NET Core unter Raspbian zu installieren, wird das bereits installierte Mono Framework benötigt. Anschliessend kann das .NET Execution Environement (DNX) installiert werden. Diese Execution Environement beinhaltet alle notwendigen Libraries, um .NET Core Applikation auszuführen.
+
+\begin{lstlisting}
+dnvm upgrade -u
+dnvm install latest -r coreclr -u
+\end{lstlisting}
+
+Die Installation des aktuelle .NET Core DNX SDK für Mono stellte sich als schwieriger als geplant heraus. 
+
+Zum Ausführen sind dann noch Umbauarbeiten notwendig, damit das neue Build-System, welches mit .NET Core eingeführt genutzt werden kann.
+
+%https://www.dotnet.xyz/tutorials/net-core-unter-linux-raspberry-pi/
+%http://docs.asp.net/en/1.0.0-rc1/getting-started/installing-on-linux.html
+
+%dotnet https://www.microsoft.com/net/core#debian
 
 Problem: Version Manager, Build-System
 dnx, dnvm
-%  https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
+
  % - http://docs.asp.net/en/latest/getting-started/installing-on-linux.html
   %- http://docs.asp.net/en/latest/dnx/projects.html
-  %- https://blogs.msdn.microsoft.com/bethmassi/2015/02/25/understanding-net-2015/
   %- https://github.com/robsonj/GrovePi
   %- http://oren.codes/2015/07/29/targeting-net-core/
   %- http://www.paraesthesia.com/archive/2015/10/20/gotcha-with-dnx-dependency-resolution-dotnet-pcl/
   %- http://davidfowl.com/diagnosing-dependency-issues-with-asp-net-5/
   %- https://github.com/mrward/monodevelop-dnx-addin
   %- http://dotnet.github.io/docs/getting-started/installing/installing-core-linux.html
-  %- https://www.dotnet.xyz/tutorials/net-core-unter-linux-raspberry-pi/
-  %- https://www.hackster.io/9381/grove-pi-windows-iot-getting-started-94bf38
   
     - .NET Core aktuell nur für 64bit
     - Raspberry PI OS sind praktisch alle 32bit
     - GrovePi NuGet Library verwendet .NET Core native (Windows only)
     - https://github.com/raspberry-sharp/raspberry-sharp-io
-\subsection{6: Finaler Setup}
+    
+    .net core cli (command line interface) 
+    
+    Package.json < Target Framework
+\subsubsection{6: Finaler Setup}
 
 
 
@@ -84,7 +117,31 @@ Der Raspberry Pi startete nicht und blieb beim Rainbow Screen\footcite{RPi_Rainb
 Mit dem NOOBS\footcite{NOOBS_2016-04-25} Installer, welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird, war die installation von Windows 10 Io
 
 
+\section{Speicherung der Sensordaten}
+Zum Abspeichern der Sensordaten haben sich verschiedene Datenformate angeboten. Um die Komplexität möglichst gering zu halten und maximale Flexibilität zu erreichen, haben wir uns entschieden die Sensordaten File-basiert abzuspeichern.
+
+Neben CSV (Comma Separated Values) standen auch JSON (JavaScript Object Notation) oder XML (Extensible Markup Language) zur Auswahl. Da die Daten in einem kontinuierlichen Stream geschrieben werden müssen haben wir uns schlussendlich für ein klassisches CSV-File entschieden. Dies bietet den Vorteil, dass neue Datensätze ohne Probleme laufend ans Ende der Datei angehängt werden können.
+
+Bei JSON und XML ist dies nicht ohne weiteres möglich, da die Daten dort in Hierarchischer Form abgespeichert werden.
+
+
 \section{Umsetzung}
+In diesem Kapitel wird die konkrete Umsetzung der Problemstellung "`Sammeln von Sensordaten"' beschrieben.
+
+\subsection{Verwendete Hardware}
+Für die Realisierung wurden nachfolgend aufgelisteten Hardware-Komponenten verwendet:
+\begin{itemize}
+\item Raspberry Pi 2 Model B
+\item Raspberry Pi 3 Model B
+\item GrovePi Sensoren
+\begin{itemize}
+\item Temperature \& Humidity Sensor
+\item Sound Sensor
+\item Light Sensor
+\item Blue LED
+\end{itemize}
+\end{itemize}
+
 
 \subsection{Verwendete Software}
 Für die Realisierung werden folgende Softwarekomponenten verwendet:
@@ -95,6 +152,26 @@ Für die Realisierung werden folgende Softwarekomponenten verwendet:
 \item Mono 4.2
 \end{itemize}
 
+\subsection{Dokumentation der Implementation}
+Verweis auf eigenen Abschnit.
+
+\subsection{Datentransfer zum Raspberry Pi}
+scp
+
+\subsection{Datentransfer vom Raspberry Pi}
+Wifi, Python HTTP
+
+\subsection{Starten der Applikation}
+screen
+
+
+\section{Dokumentation der Implementation}
+\subsection{Komponenten}
+
+I2CLib
+C\# Wrapper
+
+F\# Programm
 
 
 

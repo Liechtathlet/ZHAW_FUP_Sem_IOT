@@ -6,3 +6,15 @@
 /home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/FSharp.Charting.Gtk.dll
 /home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/OxyPlot.dll
 /home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/Chart/DaniTestChart/bin/Debug/OxyPlot.GtkSharp.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.fs
+/home/slang/git/fup/code/Chart/DaniTestChart/obj/x86/Debug/DaniTestChart.exe
+/home/slang/git/fup/code/Chart/DaniTestChart/obj/x86/Debug/DaniTestChart.exe.mdb
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/FSharp.Charting.Gtk.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/OxyPlot.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/OxyPlot.GtkSharp.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/FSharp.Data.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/FSharp.Data.DesignTime.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/System.Reactive.Interfaces.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/System.Reactive.Core.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/System.Reactive.Linq.dll
+/home/slang/git/fup/code/Chart/DaniTestChart/bin/Debug/FSharp.Control.Reactive.dll

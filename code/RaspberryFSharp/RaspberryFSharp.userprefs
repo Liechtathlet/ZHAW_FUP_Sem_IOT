@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="FGrovePiTest/FGrovePiTest.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/Program.fsx">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FGrovePiTest/Program.fsx">
     <Files>
-      <File FileName="Raspberry.FGrove/Program.fsx" Line="106" Column="34" />
+      <File FileName="Raspberry.FGrove/Program.fsx" Line="1" Column="1" />
+      <File FileName="FGrovePiTest/Program.fsx" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

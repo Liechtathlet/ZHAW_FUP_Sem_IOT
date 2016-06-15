@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "FGrovePiTest", "FGrovePiTest\FGrovePiTest.fsproj", "{C5F1ED31-0511-44F6-93A3-0F380E14858E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FGrovePiTest", "FGrovePiTest\FGrovePiTest.fsproj", "{C5F1ED31-0511-44F6-93A3-0F380E14858E}"
 EndProject
 Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Raspberry.FGrove", "Raspberry.FGrove\Raspberry.FGrove.fsproj", "{C0468787-9FA3-42D4-83AE-50BF30F2F1DD}"
 EndProject

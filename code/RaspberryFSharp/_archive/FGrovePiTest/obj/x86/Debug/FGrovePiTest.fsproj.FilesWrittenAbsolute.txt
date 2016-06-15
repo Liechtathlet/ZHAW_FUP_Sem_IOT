@@ -1,0 +1,7 @@
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.fs
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/bin/Debug/data/base.structure.json
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/bin/Debug/FGrovePiTest.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/bin/Debug/FGrovePiTest.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/obj/x86/Debug/FGrovePiTest.exe
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/obj/x86/Debug/FGrovePiTest.exe.mdb
+/home/user/remote/Development/Repositories/github/FUP_Sem_IOT/code/RaspberryFSharp/FGrovePiTest/bin/Debug/FSharp.Data.dll

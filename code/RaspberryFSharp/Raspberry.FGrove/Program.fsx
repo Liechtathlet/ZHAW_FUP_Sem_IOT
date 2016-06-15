@@ -71,7 +71,8 @@ let readNoiseSensor() =
 // Event processors
 let processTemperatureAndHumidityEvent() =
     let sensorValue = readTemperatureAndHumiditySensor()
-    writeData "TH" (sensorValue.ToString()) DateTime.Now currentLocation
+    writeData "T" ((fst sensorValue).ToString()) DateTime.Now currentLocation
+    writeData "H" ((snd sensorValue).ToString()) DateTime.Now currentLocation
 
 let processNoiseEvent() =
     let sensorValue = readNoiseSensor()
@@ -79,7 +80,7 @@ let processNoiseEvent() =
 
 let processLightEvent() =
     let sensorValue = readLightSensor()
-    writeData "L" (sensorValue.ToString()) DateTime.Now currentLocation
+    writeData "L" ((fst sensorValue).ToString()) DateTime.Now currentLocation
 
 
 // Main Program

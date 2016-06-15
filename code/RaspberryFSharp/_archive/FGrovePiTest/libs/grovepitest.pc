@@ -1,0 +1,6 @@
+Name: GrovePiTest
+Description: GrovePiTest
+Version: 0.1
+
+Requires: 
+Libs: -r:./GrovePiTest.dll

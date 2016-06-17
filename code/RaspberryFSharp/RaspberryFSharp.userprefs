@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="FGrovePiTest/FGrovePiTest.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/run.sh">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.FGrove/Program.fsx">
     <Files>
-      <File FileName="Raspberry.FGrove/Program.fsx" Line="94" Column="1" />
+      <File FileName="Raspberry.FGrove/Program.fsx" Line="83" Column="78" />
       <File FileName="Raspberry.FGrove/run.sh" Line="27" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>

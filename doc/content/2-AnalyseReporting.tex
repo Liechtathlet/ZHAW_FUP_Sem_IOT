@@ -2,13 +2,59 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Sensordaten auswerten und aufbereiten}
-Dieses Kapitel beschäftigt sich mit dem Teilprojekt der Auswertung und Aufbereitung der gesammelten Sensordaten.
-
+Im vorhergegangenen Kapitel wurde beschrieben, wie die Daten mittels Raspberry Pi und F\# gesammelt wurden. Diese Informationen müssen jetzt aufbereitet und dargestellt werden. Dies wird in diesem Kapitel beschrieben.
 
 \section{Verwendete Hardware}
 
-
 \section{Verwendete Software}
+Die Daten werden mittels F\# auf einem Linux Mint (ein Ubuntu Ableger) dargestellt. Dazu muss Mono installiert werden. 
+
+Danach werden die Daten mit F\# Data\footcite{FShaprp_Data_2016-06-17} ausgelesen, mit F\# aufbereitet und mit FSharp.Charting\footcite{FSharp_Charting_2016-06-17} dargestellt.
+
+\subsection{Mono}
+Was Mono ist und wie es installiert wird, wurde im \cref{sec:collect:fsharp:variant1:mono} \nameref{sec:collect:fsharp:variant1:mono} beschrieben.
+
+.NET Core wird für F\# Data und FSharp.Charting nicht benötigt. Deshalb entfällt auch die Installation von \gls{acr:DNVM} und \gls{acr:DNX}. 
+
+\subsection{F\# Data}
+F\# Data ist eine Library für den Zugriff auf Daten. Unterstützt werden folgende Formate:
+\begin{itemize}
+\item CSV
+\item HTML
+\item JSON
+\item XML
+\end{itemize}
+
+In dieser Arbeit wurde als Datenformat CSV gewählt, weshalb die folgende Erklärung für dieses Format ausgelegt wurde.
+Zuerst muss ein Type erstellt werden, welcher für die Zugriff auf die Daten verwendet wird.
+\begin{lstlisting}
+type Weather = CsvProvider<"http://www.some-weather-service.org/data.csv", ";">
+\end{lstlisting}
+
+Dies lädt eine CSV-Datei von der angegebenen Adresse. Es wird erwartet, dass die Erste Zeile die Namen der Spalten enthält. Zum Beispiel:
+
+\begin{lstlisting}
+City;Temperature;Rain
+London;6°;25mm/3h
+New York;25°;<1mm/3h
+[...]
+\end{lstlisting}
+
+Der Zweite Parameter im obigen Code ist ein Semicolon und definiert, welches Zeichen als Trenner der Spalten verwendet wird.
+
+Danach können die Daten geladen werden:
+\begin{lstlisting}
+let weatherData = SensorData.Load(""http://www.some-weather-service.org/data.csv")
+\end{lstlisting}
+
+Die Variable weatherData enthält eine Sequenz von dem zuvor erstellten Typen, über welche nun zugegriffen werden kann.
+
+\begin{lstlisting}
+let londonWeather = weatherData.Rows |> Seq.Head
+let londonTemperature = londonWeather.Temperature
+\end{lstlisting}
+
+\subsection{FSharp.Charting}
 
 
 \section{Dokumentation der Implementation}

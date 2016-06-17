@@ -12,13 +12,15 @@ Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, d
 
 \subsection{Variante 1: Raspbian Jessie}
 \subsubsection{1: Installation \& Konfiguration von Raspbian Jessie}
-Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software) verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die \hyperlink{https://www.raspberrypi.org/documentation/installation/noobs.md}{Anleitung} verwendet.
+\label{sec:collect:fsharp:variant1:installation}
+Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software)\footcite{NOOBS_2016-04-25} verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die \hyperlink{https://www.raspberrypi.org/documentation/installation/noobs.md}{Anleitung} verwendet.
 
 Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationen notwendig (z.B. Konfiguration des WLAN, Deaktivierung von IPv6 in einem IPv4 Netzwerk).
 
 
 \subsubsection{2: Installation des Mono-Frameworks \& F\#}
-Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert.
+\label{sec:collect:fsharp:variant1:mono}
+Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert. Mono ist eine Open Source implementation von Microsofts .NET Framework und wird benötigt, um F\# Code auszuführen.
 
 \begin{lstlisting}
 sudo apt-get install mono-complete fsharp
@@ -104,10 +106,52 @@ Aufgrund dieser letzten Erkenntnisse haben wir uns entschieden die Umsetzung auf
 \subsection{Variante 2: Windows 10 IoT}
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
-Die Installation gemäss der Anleitung auf dem Github Account from Microsoft\footcite{install_win10iot_2016-04-25} war nicht erfolgreich. 
-Der Raspberry Pi startete nicht und blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. 
-Mit dem NOOBS\footcite{NOOBS_2016-04-25} Installer, welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird, war die installation von Windows 10 Io
+\subsubsection{Installation von Windows 10 IoT}
+Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei ersteren wird das Betriebsystem direkt auf die SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU Datei welche über das Core Dashboard installiert werden muss. Danach sollte das Raspberry Pi startbar sein. 
 
+Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb bei dem Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./images/raspberry-rainbow-screen.png}
+  \caption{Raspberry Pi rainbow screen}
+\end{figure}
+
+Die zweite Variante der Installation von Windows 10 IoT arbeitet mit dem NOOBS Installer (siehe \ref{sec:collect:fsharp:variant1:installation} \nameref{sec:collect:fsharp:variant1:installation}), welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird. Dazu muss NOOBS auf einer SD-Karte installiert werden. Danach kann man die Karte in das Raspberry einfügen und starten. Um Windows 10 IoT zu installieren, muss in NOOBS das Wireless aktiviert werden, damit der Installer das Windows 10 IoT aus dem Internet herunterladen kann. Danach installiert es automatisch.
+
+Die Installation über NOOBS war einiges einfach als diejenige über das Core Dashboard und war schlussendlich auch erfolgreich.
+
+\subsubsection{Installation des Mono-Frameworks \& F\#}
+Windows 10 IoT wird bereits mit dem .NET Micro Framework. Deshalb war keine Installation für .NET nötig.
+
+\subsubsection{Installation von .NET Core}
+Da für die Entwicklung für das GrovePi das .NET Core nötig ist, wurde nach einer Anleitung\footcite{How_to_run_DotNET_Core_Application_on_Pi2} versucht dieses zu installieren. Als erstes muss \gls{acr:DNVM} installiert werden, danach die CoreCLR\footcite{CoreCLR_2016-06-17}
+
+\textbf{Installation \gls{acr:DNVM}} \\
+\begin{lstlisting}
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "`&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"'
+\end{lstlisting}
+
+\textbf{Installation CoreCLR} \\
+\begin{lstlisting}
+c:\> dnvm install -r coreclr -arch x64 latest -u
+\end{lstlisting}
+Dies installiert die CoreCLR 32bit Version für einen ARM Prozessor, welcher auf dem Raspberry Pi verwendet wird. Leider funktionierte dies nicht. 
+
+\begin{lstlisting}
+Run Build Command:/usr/bin/make "cmTryCompileExec3109069071/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3109069071.dir/build.make CMakeFiles/cmTryCompileExec3109069071.dir/build
+make[1]: Entering directory `/home/\dfrac{win10iot}{den}/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/win10iot/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3109069071.dir/testCCompiler.c.o
+/usr/bin/clang-3.5   -Wall -std=c11    -o CMakeFiles/cmTryCompileExec3109069071.dir/testCCompiler.c.o   -c /home/win10iot/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec3109069071
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3109069071.dir/link.txt --verbose=1
+/usr/bin/clang-3.5   -Wall -std=c11     CMakeFiles/cmTryCompileExec3109069071.dir/testCCompiler.c.o  -o cmTryCompileExec3109069071 -rdynamic 
+make[1]: Leaving directory `/home/win10iot/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp'
+\end{lstlisting}
+
+Deshalb wurde entschieden, das Projekt mit der Variante 1: Rasbian Jessie fortzusetzen.
 
 \section{Speicherung der Sensordaten}
 Zum Abspeichern der Sensordaten haben sich verschiedene Datenformate angeboten. Um die Komplexität möglichst gering zu halten und maximale Flexibilität zu erreichen, haben wir uns entschieden die Sensordaten File-basiert abzuspeichern.
@@ -387,4 +431,14 @@ let readNoiseSensor() =
 let processNoiseEvent() =
      let sensorValue = readNoiseSensor()
      writeData "N" (sensorValue.ToString()) DateTime.Now currentLocation
+\end{lstlisting}
+
+Die Daten werden in folgendem Format in die CSV-Datei geschrieben:
+\begin{lstlisting}
+Date;Time;SensorData;Location
+06.05.2016;11:55:30.344;68;Brun@Home;
+06.05.2016;11:55:30.367;70;Brun@Home;
+06.05.2016;11:55:30.403;69;Brun@Home;
+06.05.2016;11:55:30.426;71;Brun@Home;
+[...]
 \end{lstlisting}

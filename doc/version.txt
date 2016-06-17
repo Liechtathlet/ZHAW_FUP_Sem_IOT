@@ -1,2 +1,2 @@
-Version \vhCurrentVersion \\
+Version 0.90 \\
 \normalsize

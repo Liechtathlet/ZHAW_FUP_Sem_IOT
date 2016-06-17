@@ -2,16 +2,30 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Schlusswort} \label{chap:Finish}
+In diesem Kapitel wird ein Fazit zu dieser Seminararbeit gezogen und eine Reflexion über die Arbeit und das bearbeitete Themengebiet gemacht.
 
 %---------------------------------------------------------
 \section{Fazit}
+Im Rahmen dieser Arbeit konnten wir nicht alle Ziele erreichen, welche wir uns ursprünglich vorgenommen hatten. Der Grund dafür lag vor allem an den eingesetzten Technologien. Die konkreten Punkte werden in den nachfolgenden Abschnitten kurz beschrieben.
 
 \subsection{Sensordaten sammeln}
+Ursprünglich sollte der Teilbereich "`Sensordaten sammeln"' nur einen kleinen Teil der gesamten Projektarbeit ausmachen. Der grösste Teil der Arbeit sollte für den BigData-Teil, sprich die Aufbereitung, Aggregierung und Auswertung der gesammelten Sensordaten, aufgewendet werden. 
 
+Relativ rasch hat sich gezeigt, dass die Anbindung der Raspberry Pi GrovePi Sensoren mit einer Sprache des .NET Frameworks nicht so einfach zu bewerkstelligen ist. Die vorhandene .NET-Library für den Zugriff auf das Sensorboard erforderte das neue .NET Core Framework. Aufgrund der geringen Dokumentationen und Erfahrungen mit dem neuen .NET Core Framework hat es viel Aufwand gekostet herauszufinden, dass wir die Library unter Linux 32-Bit aktuell nicht verwenden können.
+
+Aufgrund dessen mussten wir eine andere Möglichkeit finden, um die Sensordaten abzugreifen. Am Ende waren wir mit Hilfe von zwei allgemeineren Raspberry Pi .NET Libraries in der Lage über den I2C-Bus auf das Sensorboard zuzugreifen. Die finale Lösung wurde mit Hilfe dieser .NET Libraries, einem C\# Wrapper und einem F\# Programm realisiert.
+\todo{mehr?}
 
 \subsection{Sensordaten aufbereiten und auswerten}
+Der erste Schritt bei der Aufbereitung und Auswertung war die Visualisierung in einem Chart....
+
+Erste probleme mit Packes / GTK...
+\todo{impl}
 
 
-%---------------------------------------------------------
+\section{Reflexion}
+Das gewählte Themengebiet war für uns sehr spannend und interessant, da es sich noch um ein relativ neues Themengebiet und eine erst aufkommende Kombination von Technologien handelt. F\# kann man nicht mehr unbedingt als "`junge Programmiersprache"' bezeichnen (Erscheinungsjahr: 2002), jedoch ist die Verwendung unter einem Nicht-Microsoft / Windwos-System noch nicht so verbreitet. Vor eine grössere Herausforderung hat uns dann erst die Verwendung einer Libary, welche das neue .NET Core Framework benötigt, gestellt. Aufgrund der noch fehlenden, unvollständigen und teilweise bereits wieder veralteten Dokumentationen mussten wir viel Zeit und Energie auf Recherchen und Analysen in diesem Bereich verwenden.
 
-\section{Dank}
+\todo{Zusätzlicher Abschnitt}
+
+Trotz allem war es für uns sehr interessant ein Projekt mit solchen neuen und innovativen Technologien und Technologiekombinationen zu realisieren. 

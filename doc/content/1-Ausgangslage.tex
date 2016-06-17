@@ -9,21 +9,13 @@ Die Vorlesung zu diesem Semniar befasst sich mit den Konzepten der Funktionalen 
 
 \section{Der Raspberry Pi}
 \label{sec:recherche:rpi}
-Wie bereits im vorangehenden Kapitel beschrieben, handelt es sich beim Raspberry Pi um einen Einplatinencomputer. Dieser Einplatinencomputer bietet verschiedene zentrale Hardware-Schnittstellen um externe Geräte für Input und Output anzuschliessen.
-
-Vom Raspberry Pi gibt es folgende Modelle:
-\begin{itemize}
-\item Raspberry Pi Compute Module
-\item Raspberry Pi Zero
-\item Raspberry Pi Model A
-\item Raspberry Pi Model A+
-\item Raspberry Pi Model B
-\item Raspberry Pi Model B+
-\item Raspberry Pi 2 Model B
-\item Raspberry Pi 3 Model B
-\end{itemize}
-
-\todo{Evtl. ein Bild / List mit Daten dazu?}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5cm]{./images/RaspberryPi2ModelB}
+  \captionsource{Raspberry Pi 2 Model B}{\url{https://www.raspberrypi.org/wp-content/uploads/2015/01/Pi2ModB1GB_-comp.jpeg}}
+\end{figure}
+  
+Wie bereits im vorangehenden Kapitel beschrieben, handelt es sich beim Raspberry Pi um einen Einplatinencomputer welcher von der Raspberry Pi Foundation entwickelt und vertrieben wird. Er hat ungefähr die Grösse einer Kreditkarte und bietet zahlreiche On-Board Schnittstellen wie USB-, HDMI und Audio Anschlüsse (Abhängig vom konkreten Modell). Zusätzlich stehen eine bestimmte Anzahl an GPIO-Pins (General Purpose Input / Output) zur Verfügung. Mit Hilfe dieser Pins lassen sich zum einen Erweiterungs-Boards anschliessen und zum anderen können auch über ein spezielles Erweiterungsboard eigene Schaltungen, etc. gebaut und verlötet werden. Die Anzahl und genaue Funktion der einzelnen GPIO-Pins ist vom konkreten Raspberry PI Modell abhängig.
 
 Am 29 Februar 2016 ist die neuste Version, der Raspberry Pi 3 (Model B), auf dem Markt erschienen\footcite{Raspberry_Pi_3_2016-04-24}. Einige Zahlen zu dem Gerät:
 
@@ -33,6 +25,103 @@ Am 29 Februar 2016 ist die neuste Version, der Raspberry Pi 3 (Model B), auf dem
 \item Komplette Kompatibilität zu Raspberry Pi 1 und 2 (Model B)
 \end{itemize} 
 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=13cm]{./images/RaspberryPi2ModelBPlusOverview}
+  \captionsource{Raspberry Pi 2 Model B Überblick}{\url{https://www.elektronik-kompendium.de/sites/raspberry-pi/bilder/19052512.jpg}}
+\end{figure}
+
+\newpage
+\begin{landscape}
+
+\subsection{Raspberry Pi Modelle im Überblick}
+\begin{table}[H]
+\centering
+\begin{tabular}{r | c  | c | c | c | c | c | c | c | c | c}
+	& \THrot{\textbf{Raspberry Pi Model A}}
+	& \THrot{\textbf{Raspberry Pi Model A+}}
+	& \THrot{\textbf{Raspberry Pi Model B}}
+	& \THrot{\textbf{Raspberry Pi Model B+}}
+	& \THrot{\textbf{Raspberry Pi 2 Model B}}
+	& \THrot{\textbf{Raspberry Pi 3 Model B}}
+	& \THrot{\textbf{Raspberry Pi Compute}}
+	& \THrot{\textbf{Raspberry Pi Zero}}\\
+\midrule
+Gewicht in Gramm
+	& 	31
+	&	23
+	&	40		
+	& 	45 
+	&	40
+	&	40
+	&	7
+	&	9\\
+\midrule
+System-on-a-Chip (SoC):
+	& 	\multicolumn{4}{|c|}{BCM2835} 
+	&	BCM2836
+	&	BCM2837
+	&	\multicolumn{2}{|c|}{BCM2835} \\
+\midrule
+CPU Kerne
+	& 	1
+	&	1
+	&	1		
+	& 	1 
+	&	1
+	&	4
+	&	1
+	&	1\\
+\midrule
+CPU Takt in MHz
+	& 	\multicolumn{4}{|c|}{700} 
+	&	900
+	&	1200
+	&	700
+	&	1000\\
+\midrule
+CPU Architektur
+	& 	\multicolumn{4}{|c|}{ARMv6 (32-bit)}  
+	&	ARMv7 (32-bit)	
+	&	ARMv7 (64-bit)	
+	&	\multicolumn{2}{|c|}{ARMv6 (32-bit)}  	\\
+\midrule
+GPU Takt in MHz
+	& 	\multicolumn{5}{|c|}{250} 
+	&	300/400
+	&	\multicolumn{2}{|c|}{250} \\
+\midrule
+Arbeitsspeicher in MB
+	& 	\multicolumn{2}{|c|}{256}  
+	&	256 / 512		
+	& 	\multicolumn{2}{|c|}{512}  	
+	& 	1024 
+	&	\multicolumn{2}{|c|}{512}  	\\
+	
+\midrule
+Pins
+	& 	26
+	&	40
+	& 	26
+	& 	\multicolumn{3}{|c|}{40}  	
+	&	60
+	&	40  	\\
+	
+\midrule
+GPIO-Pins
+	& 	17	
+	&	26
+	& 	17
+	& 	\multicolumn{3}{|c|}{26}  	
+	&	48
+	&	26  	\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{landscape}
+\newpage
 
 \section{F\# mit dem Raspberry Pi}
 \label{sec:recherche:fsharprpi}
@@ -73,7 +162,4 @@ Die Recherchen haben ebenfalls gezeigt, dass es eine Library für .NET gibt mit 
 
 \section{Datenauswertung}
 Die von den Sensoren gespeicherten Daten werden in einem noch zu definierenden Format abgespeichert und danach für die Datenauswertung ausgelesen. Dafür wurde vom Dozenten die Library F\# Data empfohlen\footcite{Fsharp_Data_2016-04-24}. Diese kann Daten in den Formaten CSV, HTML, JSON und XML entgegennehmen und verarbeiten.
-
-
-\todo{Dokumentieren wir den SW-Setup der Hardware? Installationsanleitung?}
 

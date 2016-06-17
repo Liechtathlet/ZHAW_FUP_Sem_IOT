@@ -70,5 +70,6 @@
     <None Include="SensorData-L.csv" />
     <None Include="SensorData-N.csv" />
     <None Include="SensorData-TH.csv" />
+    <None Include="SynchronusTest.fsx" />
   </ItemGroup>
 </Project>

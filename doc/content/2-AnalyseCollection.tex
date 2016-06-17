@@ -234,7 +234,8 @@ ctrl + c (terminate Python HTTP-Server)
 exit (closes current window and screen session)
 \end{lstlisting}
 
-\section{Dokumentation der Implementation}\label{sec:AnalyseCollection:ImplDoc}
+\section{Dokumentation der Implementation}
+\label{sec:AnalyseCollection:ImplDoc}
 Nachfolgend werden die wichtigsten Punkte der einzelnen Komponenten dokumentiert.
 
 \subsection{Komponenten}
@@ -364,6 +365,7 @@ lock (_locker) {
 
 
 \subsection{Raspberry.FGrove (F\# Applikation)}
+\label{sec:AnalyseCollection:application}
 Diese Komponente realisiert die Kern-Logik der Anwendung, die Sammlung und Speicherung der Sensordaten. Dazu wird die implementierte C\# Library "`Raspberry.GrovePi"' verwendet.
 
 Pro Sensor wurde ein eigenständiger Timer implementiert, welche periodisch gestartet und anschliessend zurückgesetzt wird. Pro Timer wurde ein Event-Listener registriert, welcher die spezifischen Sensordaten ausliest und anschliessend in ein \gls{acr:CSV}-File schreibt.

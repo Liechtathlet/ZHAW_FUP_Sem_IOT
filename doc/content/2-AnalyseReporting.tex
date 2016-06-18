@@ -4,7 +4,6 @@
 \chapter{Sensordaten auswerten und aufbereiten}
 Im vorhergegangenen Kapitel wurde beschrieben, wie die Daten mittels Raspberry Pi und F\# gesammelt wurden. Diese Informationen müssen jetzt aufbereitet und dargestellt werden. Dies wird in diesem Kapitel beschrieben.
 
-\section{Verwendete Hardware}
 
 \section{Verwendete Software}
 \label{sec:display:software}
@@ -283,7 +282,7 @@ let chunk size list =
     chunkedValues |> Seq.map (fun r -> r |> Seq.averageBy (fun e -> e |> float))
 
 let format (sensorData:SensorData) =
-    let values = sensorData.Rows |> Seq.map (fun r -> r.SensorData)
+    let values = sensorData.Rows |> Seq.map (fun r -\section{Verwendete Hardware}> r.SensorData)
     chunk 1000 values
 
 let runApp = async{

@@ -310,3 +310,14 @@ Async.RunSynchronously runMain
 //1. xhost +localhost
 //2. fsharpi Program.fsx
 \end{lstlisting}
+
+\section{Resultat}
+Schlussendlich konnte mit F\# Code die vom den GrovePi Sensoren erfassten Daten ausgewertet werden. Das Resultat ist zum Beispiel folgendes Diagramm:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{./images/resultat.png}
+  \caption{Resultat: Lichtsensor}
+\end{figure}
+
+Das Chart zeigt die Auswertung eines Lichtsensores, welcher vom 27.05.2016 um 13:16 bis am 01.06.2016 um 17:37 Uhr lief (447'639 Sekunden). Gesammelt wurden 708'204 Messungen. Dies macht pro Sekunde 1.58 Messpunkte. Die Darstellung des Chart-Fensters dauerte 4.92 und die Vearbeitung aller Datensätze 5.88 Sekunden.

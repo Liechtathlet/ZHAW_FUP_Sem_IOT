@@ -25,16 +25,28 @@ open System
 open System.Threading
 open FSharp.Data
 
-type SensorData = CsvProvider<"SensorData-L.csv", ";">
+type SensorData = CsvProvider<"../../../data/SensorData-L (6).csv", ";">
 
 let chunk size list =
     let chunkedValues = list |> Seq.chunkBySize size
     //chunkedValues |> Seq.map (fun r -> [r |> Seq.head |> fst, r |> Seq.averageBy (fun e -> e |> snd |> float)])
-    chunkedValues |> Seq.map (fun r -> r |> Seq.averageBy (fun e -> e |> float))
+    chunkedValues |> Seq.map (fun r -> 
+        //let x = r |> Seq.head |> fst
+        //let y = r |> Seq.averageBy (fun e -> e |> snd |> float)
+        let y = r |> Seq.averageBy (fun e -> e |> float)
+        //printfn "(x,y): (\"%s\",%f)" x y
+        //(x, y)
+        y
+    )
 
 let format (sensorData:SensorData) =
     //let values = sensorData.Rows |> Seq.map (fun r -> (r.MyIndex, r.SensorData))
-    let values = sensorData.Rows |> Seq.map (fun r -> r.SensorData)
+    let values = sensorData.Rows |> Seq.map (fun r -> 
+        //let date = r.Date.Substring(0, 5)
+        //let time = r.Time.ToString("hh:mm tt")
+        //printfn "format: %s" (date + " " + time)
+        //(date + " " + time, r.SensorData))
+        r.SensorData)
     chunk 1000 values
 
 let runApp = async{
@@ -48,7 +60,7 @@ let runApp = async{
 
 
     printfn "Load Data"
-    let light = SensorData.Load("SensorData-L.csv")
+    let light = SensorData.Load("../../../data/SensorData-L (6).csv")
     //let updater = fun x -> [(fst x, snd x)]
     printfn "Preparing data"
     let lightValues = format light
@@ -57,12 +69,16 @@ let runApp = async{
 
     //let noiseValues = format noise
     printfn "Setup chart"
-    let chart = Chart.Line(lightValues).ShowChart()
+    let chart = Chart.Line(lightValues)
+    printfn "Chart ready"
+    chart.ShowChart()
+    printfn "Chart displayed"
+
     //Chart.Combine(
     //    [ Chart.Line(lightValues, Name="Light")
     //      Chart.Line(noiseValues, Name="Noise")]).ShowChart()
     Gtk.Application.Run()
-    printfn "Chart displayed"
+    printfn "Gtk run"
 
     //System.Threading.Thread.Sleep 3000
     //let lightValue2 = Seq.append lightValues [ (121000, float 700) ]

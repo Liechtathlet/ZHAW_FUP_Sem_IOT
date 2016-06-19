@@ -321,3 +321,10 @@ Schlussendlich konnte mit F\# Code die vom den GrovePi Sensoren erfassten Daten 
 \end{figure}
 
 Das Chart zeigt die Auswertung eines Lichtsensores, welcher vom 27.05.2016 um 13:16 bis am 01.06.2016 um 17:37 Uhr lief (447'639 Sekunden). Gesammelt wurden 708'204 Messungen. Dies macht pro Sekunde 1.58 Messpunkte. Die Darstellung des Chart-Fensters dauerte 4.92 und die Verarbeitung aller Datensätze 5.88 Sekunden. Wird dieses Programm auf dem Raspberry Pi 2 (Model B) ausgeführt benötigt die Darstellung des Chart-Fensters rund 37 Sekunden und die gesamte Verarbeitung 2. Minuten und 54 Sekunden.
+
+\section{Weiterführende Entwicklungsmöglichkeiten}
+Falls das Projekt weiter ausgebaut werden sollte, so würde sich der LiveChart von FSharp.Charting empfehlen. Damit können Diagramme entwickelt werden, welche stetig mit neuen Daten beliefert werden können und sich so verändern. Dadurch hat man eine aktuelle Ansicht der Sensoren.
+
+Alternativ bietet es sich an, mehrere Sensorwerte in einem Grpahen darzustellen. Zum Beispiel die Temperatur und die Luftfeuchtigkeit. FSharp.Charting bietet auch dass an mit einem CombineChart.
+
+Möchte man jedoch Live- oder CombineChart einsetzten, so sollte die Entwicklung auf einem Windwos Betriebsystem fortgeführt werden, da die Linux Version der Library diese Funktionalität nicht anbietet.

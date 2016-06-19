@@ -28,7 +28,7 @@ sudo apt-get install mono-complete fsharp
 
 
 \subsubsection{3: Installation \& Konfiguration GrovePi}
-Die Installation und Konfiguration wurde anhand der vom Hersteller (Dexter Industries) zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt.
+Die Installation und Konfiguration wurde anhand der vom Hersteller (Dexter Industries) zur Verfügung gestellten Anleitung\footcite{Setting_Up_The_Software_-_Dexter_Industries_2016-06-19} durchgeführt.
 
 \textbf{Schwierigkeiten}\\
 Bei der Installation musste ein Git-Repository des Herstellers geklont werde. Dieses beinhaltet die Firmeware und verschiedenste Code-Beispiele und Beispiel Scripts. Das Repository scheint jedoch von gewissen Netzwerkknoten nicht erreichbar zu sein. Das Repository konnte nur im Netzwerk der \gls{acr:ZHAW} geklont werden.
@@ -116,7 +116,7 @@ Aufgrund dieser letzten Erkenntnisse haben wir uns entschieden die Umsetzung auf
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
 \subsubsection{Installation von Windows 10 IoT}
-Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO-Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU-Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können. \todo{Was bedeutet FFU?}
+Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO-Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU-Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können.
 
 Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. Der Rainbow Screen ist Teil des Boot-Vorgangs und wird im Rahmen des \gls{acr:GPU}-Tests generiert.
 
@@ -227,7 +227,7 @@ python -m SimpleHTTPServer 8000
 
 
 \subsection{Betrieb \& Starten der Applikation}
-Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand der Anleitungen von \hyperlink{http://lcdev.dk/2012/11/18/raspberry-pi-tutorial-connect-to-wifi-or-create-an-encrypted-dhcp-enabled-ad-hoc-network-as-fallback/}{Lasse Christiansen} und \hyperlink{http://slicepi.com/creating-an-ad-hoc-network-for-your-raspberry-pi/}{cpetty33} durchgeführt.
+Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand der Anleitungen von Lasse Christiansen\footcite{Connect_to_WiFi_2016-06-19} und cpetty33\footcite{Creating_an_Ad-hoc_network_for_your_Raspberry_Pi_2016-06-19} durchgeführt.
 
 
 Mit diesem Setup kann nun jederzeit auf den Raspberry Pi zugegriffen und entweder die Anwendung gestartet / gestoppt oder die Daten heruntergeladen werden.

@@ -16,7 +16,7 @@ Relativ rasch hat sich gezeigt, dass die Anbindung der Raspberry Pi GrovePi Sens
 
 Aufgrund dessen mussten wir eine andere Möglichkeit finden, um die Sensordaten abzugreifen. Am Ende waren wir mit Hilfe von drei allgemeineren Raspberry Pi .NET Libraries in der Lage über den \gls{acr:I2C}-Bus auf das GrovePi-Sensorboard zuzugreifen. Die finale Lösung wurde mit Hilfe dieser .NET Libraries, einem C\# Wrapper und einem F\# Programm realisiert.
 
-Sobald der Ziel-Setup klar war, war die Arbeit mit den Libraries und F\# relativ unkompliziert. Schwierigkeiten bereiteten hauptsächlich unvollständige oder mangelhafte Dokumentationen und Beispiele.
+Sobald das Ziel-Setup klar war, war die Arbeit mit den Libraries und F\# relativ unkompliziert. Schwierigkeiten bereiteten hauptsächlich unvollständige oder mangelhafte Dokumentationen und Beispiele.
 
 \subsection{Sensordaten aufbereiten und auswerten}
 Der erste Schritt bei der Aufbereitung und Auswertung der Sensordaten war die Visualisierung von Testdaten in einem Chart. Auch an dieser Stelle hatten wir mit mit den Eigenheiten von Linux, beziehungsweise des Mono-Frameworks zu kämpfen. Die vorhandenen NuGet-Packages konnten nicht ohne weiteres direkt verwendet werden. Es waren zusätzlich manuelle Referenzen zu den \gls{acr:GTK} Libraries und weitere Einstellungen notwendig. 

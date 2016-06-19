@@ -15,7 +15,7 @@ Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, d
 \label{sec:collect:fsharp:variant1:installation}
 Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software)\footcite{NOOBS_2016-04-25} verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die offizielle  Anleitung der Raspberry Pi Foundation verwendet (\url{https://www.raspberrypi.org/documentation/installation/noobs.md}).
 
-Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationsanpassungen notwendig (z.B. Konfiguration des WLAN, Deaktivierung von IPv6 in einem IPv4 Netzwerk).
+Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationsanpassungen notwendig (z.B. Konfiguration des WLAN oder die Deaktivierung von IPv6 in einem IPv4 Netzwerk).
 
 
 \subsubsection{2: Installation des Mono-Frameworks \& F\#}
@@ -28,7 +28,11 @@ sudo apt-get install mono-complete fsharp
 
 
 \subsubsection{3: Installation \& Konfiguration GrovePi}
+<<<<<<< HEAD
 Die Installation und Konfiguration wurde anhand der vom Hersteller (Dexter Industries) zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt.
+=======
+Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten Anleitung (\url{http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}) durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
+>>>>>>> Doc fixes
 
 \textbf{Schwierigkeiten}\\
 Bei der Installation musste ein Git-Repository des Herstellers geklont werde. Dieses beinhaltet die Firmeware und verschiedenste Code-Beispiele und Beispiel Scripts. Das Repository scheint jedoch von gewissen Netzwerkknoten nicht erreichbar zu sein. Das Repository konnte nur im Netzwerk der \gls{acr:ZHAW} geklont werden.
@@ -38,7 +42,11 @@ Die Installation und Konfiguration des GrovePi wurde über ein Testsetup mit Hil
 
 
 \subsubsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
+<<<<<<< HEAD
 Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste Test-Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung weist das Paket eine Abhängigkeit zum Microsoft .NET Framework 5 auf. Beim Microsoft .NET Framework 5 handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
+=======
+Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt (siehe \cref{sec:recherche:hardware:grovepi} \nameref{sec:recherche:hardware:grovepi}). In der Entwicklungsumgebung (Monodevelop\footcite{MonoDevelop_2016-06-19}) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
+>>>>>>> Doc fixes
 
 \textbf{.NET Core}\\
 Ursprünglich war es geplant .NET Core als "`.NET Framework Version 5"' auszurollen. Inzwischen wurde von Microsoft entschieden, .NET Core unter einer eigenständigen Versionsnummer zu führen (Ausgehend davon war die im vorangehenden Abschnitt beschriebene Fehlermeldung nicht mehr korrekt). Das reguläre .NET Framework wird vorläufig mit einer eigenständigen Nummerierung fortgeführt. Die nächste Version wird das .NET Framework 4.6 sein.
@@ -65,7 +73,7 @@ Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
 \end{itemize}
 \end{itemize}
 
-Die nachfolgende Grafik zeigt eine grobe Übersicht über das .NET Framework und .NET Core:
+Die folgende Grafik zeigt eine grobe Übersicht über das .NET Framework und .NET Core:
 \begin{figure}[H]
   \centering
   \includegraphics[width=15cm]{./images/UnderstandingNetCore}
@@ -74,14 +82,18 @@ Die nachfolgende Grafik zeigt eine grobe Übersicht über das .NET Framework und
 
 
 \subsubsection{5: Installation von .NET Core}
-Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry Pi zu installieren. Zur Zeit zu dem dieser Setup durchgeführt wurden, existierten keine offiziellen Microsoft-Quellen zur Installation von .NET Core unter Linux.
+Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry Pi zu installieren. Zur Zeit, zu dem dieses Setup durchgeführt wurden, existierten keine offiziellen Microsoft-Quellen zur Installation von .NET Core unter Linux.
 
 Um .NET Core unter Raspbian zu installieren, wird das bereits installierte Mono Framework benötigt. Anschliessend kann das \gls{acr:DNX} installiert werden. Diese Execution Environement beinhaltet alle notwendigen Libraries, um .NET Core Applikation auszuführen. Um  \gls{acr:DNX} zu installieren ist es am einfachsten den \gls{acr:DNVM} zu verwenden. Mit dem Version Manager können verschiedene Versionen des .NET Frameworks parallel installiert werden. \gls{acr:DNVM} bietet auch Möglichkeiten um zwischen den einzelnen Versionen einfach und schnell hin und her zu wechseln.
 
 \textbf{Installation \gls{acr:DNVM}} \\
+
+Um \gls{acr:DNVM} herunter zu laden und zu installieren wurde folgender Befehl verwendet\footcite{Installing_ASPNET_5_2016-06-19}: 
+
 \begin{lstlisting}
 curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
 \end{lstlisting}
+
 
 \textbf{Installation  \gls{acr:DNX} .NET Core} \\
 \begin{lstlisting}
@@ -91,7 +103,11 @@ dnvm upgrade -u
 dnvm install latest -r coreclr -u
 \end{lstlisting}
 
+<<<<<<< HEAD
 Die beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits wieder verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedeckt werden\footnotemark[1]. Diese Umstellung wurde mit dem Wechsel der Version .NET Core RC1 auf .NET Core RC2 eingeführt. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
+=======
+Die oben beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedekct werden\footnotemark[1]. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
+>>>>>>> Doc fixes
 
 \footnotetext[1]{\url{http://dotnet.github.io/docs/core-concepts/dnx-migration.html}}
 
@@ -112,7 +128,11 @@ Aufgrund dieser letzten Erkenntnisse haben wir uns entschieden die Umsetzung auf
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
 \subsubsection{Installation von Windows 10 IoT}
+<<<<<<< HEAD
 Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können. \todo{Was bedeutet FFU?}
+=======
+Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei ersteren wird das Betriebsystem direkt auf die SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert ein FFU-File welche über das Core Dashboard installiert werden muss. Danach sollte das Raspberry Pi startbar sein. 
+>>>>>>> Doc fixes
 
 Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. Der Rainbow Screen ist Teil des Boot-Vorgangs und wird im Rahmen des \gls{acr:GPU}-Tests generiert.
 
@@ -127,7 +147,7 @@ Die zweite Variante der Installation von Windows 10 IoT arbeitet mit dem NOOBS I
 Die Installation über NOOBS war einiges einfach als diejenige über das Core Dashboard und war schlussendlich auch erfolgreich.
 
 \subsubsection{Installation des Mono-Frameworks \& F\#}
-Windows 10 IoT wird bereits mit dem .NET Micro Framework. Deshalb war keine Installation für .NET nötig.
+Windows 10 IoT wird bereits mit dem .NET Micro Framework ausgeliefert. Deshalb war keine Installation für .NET nötig.
 
 \subsubsection{Installation von .NET Core}
 Da für die Entwicklung für das GrovePi das .NET Core nötig ist, wurde nach einer Anleitung\footcite{How_to_run_DotNET_Core_Application_on_Pi2} versucht dieses zu installieren. Als erstes muss \gls{acr:DNVM} installiert werden, danach die CoreCLR\footcite{CoreCLR_2016-06-17}
@@ -217,7 +237,11 @@ scp -rp ./Raspberry.FGrove pi@raspberrypi.local:/home/pi/Development/FUP/
 \end{lstlisting}
 
 \subsection{Datentransfer vom Raspberry Pi}
+<<<<<<< HEAD
 Der Datentransfer vom Raspberry Pi auf einen anderen Computer wurde durch einen einfachen HTTP-Server auf Python-Basis bewerkstelligt. Python wurde bei der Installation des GrovePi automatisch mitinstalliert. Dadurch konnten wir den "`SimpleHTTPServer"' nutzen, welcher standardmässig mit Python ausgeliefert wird.
+=======
+Der Datentransfer vom Raspberry Pi wurde durch einen einfachen HTTP-Server auf Python-Basis bewerkstelligt. Python wurde bei der Installation des GrovePi automatisch mit installiert. Dadurch konnten wir den "`SimpleHTTPServer"' nutzen, welcher standardmässig mit Python ausgeliefert wird.
+>>>>>>> Doc fixes
 
 \begin{lstlisting}
 python -m SimpleHTTPServer 8000
@@ -225,7 +249,11 @@ python -m SimpleHTTPServer 8000
 
 
 \subsection{Betrieb \& Starten der Applikation}
+<<<<<<< HEAD
 Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand der Anleitungen von \hyperlink{http://lcdev.dk/2012/11/18/raspberry-pi-tutorial-connect-to-wifi-or-create-an-encrypted-dhcp-enabled-ad-hoc-network-as-fallback/}{Lasse Christiansen} und \hyperlink{http://slicepi.com/creating-an-ad-hoc-network-for-your-raspberry-pi/}{cpetty33} durchgeführt.
+=======
+Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand von Anleitungen von Lasse Christiansen\footcite{Connect_to_WiFi_2016-06-19} und cpetty33\footcite{Creating_an_Ad-hoc_network_for_your_Raspberry_Pi_2016-06-19} durchgeführt.
+>>>>>>> Doc fixes
 
 
 Mit diesem Setup kann nun jederzeit auf den Raspberry Pi zugegriffen und entweder die Anwendung gestartet / gestoppt oder die Daten heruntergeladen werden.

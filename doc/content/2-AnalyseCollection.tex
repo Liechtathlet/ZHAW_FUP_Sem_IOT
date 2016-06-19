@@ -116,7 +116,7 @@ Aufgrund dieser letzten Erkenntnisse haben wir uns entschieden die Umsetzung auf
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
 \subsubsection{Installation von Windows 10 IoT}
-Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können. \todo{Was bedeutet FFU?}
+Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO-Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU-Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können. \todo{Was bedeutet FFU?}
 
 Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. Der Rainbow Screen ist Teil des Boot-Vorgangs und wird im Rahmen des \gls{acr:GPU}-Tests generiert.
 
@@ -145,8 +145,7 @@ Da für die Entwicklung für das GrovePi das .NET Core nötig ist, wurde nach ei
 \begin{lstlisting}
 c:\> dnvm install -r coreclr -arch x64 latest -u
 \end{lstlisting}
-\todo{@Simon: Meinsch da 64-Bit nimmi ah?}
-Dies installiert die CoreCLR 32bit Version für einen ARM Prozessor, welcher auf dem Raspberry Pi verwendet wird. Leider funktionierte dies nicht. 
+Dies installiert die CoreCLR 64bit Version für einen ARM Prozessor, welcher auf dem Raspberry Pi verwendet wird. Leider funktionierte dies nicht und zeigte folgende Fehlermeldung an:
 
 \begin{lstlisting}
 Run Build Command:/usr/bin/make "cmTryCompileExec3109069071/fast"
@@ -161,7 +160,6 @@ Linking C executable cmTryCompileExec3109069071
 make[1]: Leaving directory `/home/win10iot/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp'
 \end{lstlisting}
 
-\todo{Ist das oben die Fehlermeldung?}
 Deshalb wurde entschieden, das Projekt mit der Variante 1: Rasbian Jessie fortzusetzen.
 
 \section{Speicherung der Sensordaten}
@@ -258,7 +256,7 @@ exit (closes current window and screen session)
 
 \section{Dokumentation der Implementation}
 \label{sec:AnalyseCollection:ImplDoc}
-Nachfolgend werden die wichtigsten Punkte der einzelnen Komponenten dokumentiert.
+Nachfolgend werden die wichtigsten Punkte der einzelnen Komponenten dokumentiert. Der Source Code wird in folgendem Git-Repository verwaltet: \url{https://github.com/Liechtathlet/FUP_Sem_IOT}
 
 \subsection{Komponenten}
 Die Anwendung besteht aus den nachfolgend beschriebenen Teilkomponenten.
@@ -278,11 +276,8 @@ Die Anwendung besteht aus den nachfolgend beschriebenen Teilkomponenten.
 \end{itemize}
 
 
-\subsection{Source Code}
-Der Source Code wird in folgendem Git-Repository verwaltet: \hyperlink{https://github.com/Liechtathlet/FUP_Sem_IOT}{FUP\_Sem\_IOT}
-
 \subsection{Raspberry.IO.InterIntegratedCircuit (C\# Library)}
-Bei dieser Komponente handelt es sich um einen Klon / Fork der Teilkomponente "`Raspberry.IO.InterIntegratedCircuit"' des Git-Repositorys \hyperlink{https://github.com/raspberry-sharp/raspberry-sharp-io/tree/master/Raspberry.IO.InterIntegratedCircuit}{raspberry-sharp-io} von \hyperlink{https://github.com/raspberry-sharp}{Raspberry\#}.
+Bei dieser Komponente handelt es sich um einen Klon / Fork der Teilkomponente "`Raspberry.IO.InterIntegratedCircuit"' des Git-Repositorys raspberry-sharp-io\footcite{raspberry_io_i2c_2016-06-19}  von Raspberry\#\footcite{raspberry_sharp_2016-06-19}.
 
 Diese Library ist aktuell nicht als NuGet-Packet verfügbar und wurde spezifisch für .NET unter Mono optimiert. Die Library verwendet die NuGet-Packete "`Raspberry.IO.GeneralPurpose"' und "`Raspberry.System"', welche von Raspberry\# veröffentlicht und im genannten Git-Repository gepflegt werden.
 
@@ -296,13 +291,13 @@ Die Library besteht aus einer einzigen Wrapper-Klasse, welche die \gls{acr:I2C} 
 Die Daten, welche von den Sensoren zurückgegeben werden, sind meistens nicht direkt verwendbar, da diese noch in Rohform vorliegen. Der Temperatursensor gibt zum Beispiel keinen absoluten Wert in Grad Celsius oder Kelvin zurück. Die entsprechenden Rohwerte müssten über spezielle Formeln entsprechend den Hardwarekomponenten umgerechnet werden. Die Herstellerdokumentationen sind an dieser Stelle leider lückenhaft, wodurch die entsprechenden Umrechnungen nur teilweise durchgeführt werden konnten.
 
 \begin{itemize}
-\item \hyperlink{https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/the-gpio-connector}{Raspberry Pi GPIO Connector}
-\item \hyperlink{http://www.dexterindustries.com/GrovePi/engineering/port-description/}{GrovePi Port Description}
-\item \hyperlink{http://www.dexterindustries.com/GrovePi/programming/grovepi-protocol-adding-custom-sensors/}{GrovePi Protocol and Adding Custom Sensors}
-\item \hyperlink{https://github.com/DexterInd/GrovePi/blob/bfcaa57bb6ce2b5c4cb0057569ea38f3574f24cf/Firmware/Source/v1.2/grove_pi_v1_2_6/README.md}{GrovePi Firmware Documentation}
-\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Sound_Sensor}{GrovePi Sound Sensor}
-\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Temperature_and_Humidity_Sensor}{GrovePi Temperature \& Humidity Sensor}
-\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor}{GrovePi Light Sensor}
+\item \hyperlink{https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/the-gpio-connector}{Raspberry Pi GPIO Connector}\footcite{The_GPIO_Connector_2016-06-19}
+\item \hyperlink{http://www.dexterindustries.com/GrovePi/engineering/port-description/}{GrovePi Port Description}\footcite{GrovePi_Port_description_2016-06-19}
+\item \hyperlink{http://www.dexterindustries.com/GrovePi/programming/grovepi-protocol-adding-custom-sensors/}{GrovePi Protocol and Adding Custom Sensors}\footcite{GrovePi_Protocol_and_Adding_Custom_Sensors_2016-06-19}
+\item \hyperlink{https://github.com/DexterInd/GrovePi/blob/bfcaa57bb6ce2b5c4cb0057569ea38f3574f24cf/Firmware/Source/v1.2/grove_pi_v1_2_6/README.md}{GrovePi Firmware Documentation}\footcite{grovepi_firmware_version_1-2-6_2016-06-19}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Sound_Sensor}{GrovePi Sound Sensor}\footcite{Grove_-_Sound_Sensor_-_Wiki_2016-06-19}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Temperature_and_Humidity_Sensor}{GrovePi Temperature \& Humidity Sensor}\footcite{Grove_-_Temperature_and_Humidity_Sensor_-_Wiki_2016-06-19}
+\item \hyperlink{http://www.seeedstudio.com/wiki/Grove_-_Light_Sensor}{GrovePi Light Sensor}\footcite{Grove_-_Light_Sensor_-_Wiki_2016-06-19}
 \end{itemize}
 
 

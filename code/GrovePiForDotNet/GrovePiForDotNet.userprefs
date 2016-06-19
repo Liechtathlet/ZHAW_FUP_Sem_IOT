@@ -1,8 +1,7 @@
 ﻿<Properties StartupItem="Packages.mdproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.GrovePi/GrovePiWrapper.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Raspberry.IO.InterIntegratedCircuit/I2cDriver.cs">
     <Files>
-      <File FileName="Raspberry.GrovePi/GrovePiWrapper.cs" Line="101" Column="5" />
       <File FileName="Raspberry.IO.InterIntegratedCircuit/I2cDriver.cs" Line="40" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>

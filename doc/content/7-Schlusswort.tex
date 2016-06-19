@@ -2,30 +2,27 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Schlusswort} \label{chap:Finish}
-In diesem Kapitel wird ein Fazit zu dieser Seminararbeit gezogen und eine Reflexion über die Arbeit und das bearbeitete Themengebiet gemacht.
+In diesem Kapitel wird das Fazit zu dieser Seminararbeit gezogen und eine Reflexion über die Arbeit und die bearbeiteten Themengebiet gemacht.
 
 %---------------------------------------------------------
 \section{Fazit}
-Im Rahmen dieser Arbeit konnten wir nicht alle Ziele erreichen, welche wir uns ursprünglich vorgenommen hatten. Der Grund dafür lag vor allem an den eingesetzten Technologien. Die konkreten Punkte werden in den nachfolgenden Abschnitten kurz beschrieben.
+Über alles Hinweg kann gesagt werden, dass sich funktionale Programmiersprachen durchaus eigenen um im Bereich \gls{acr:IOT} und BigData verwendet zu werden. Besonders im Bereich BigData bietet F\# viele nützliche Funktionalitäten, welche die Aggregierung, Aufbereitung und Auswertung der Daten erleichtert. Etwas anders sieht es hingegen auf dem Raspberry Pi aus. Grundsätzlich können funktionale Programmiersprachen, beziehungsweise F\# auch auf dem Raspberry Pi verwendet werden. Zu berücksichtigen ist jedoch, dass für die Auswertung der Daten doch eine gewisse Rechenleistung notwendig ist. Je nach Datemenge und Model des Raspberry Pi dauert zum Beispiel die Visualisierung in einem Chart mehrere Minuten. Von daher kann gesagt werden, dass sich eine funktionale Programmiersprache zum Erheben der Daten auf dem Raspberry Pi eignet. Für die anschliessende Auswertung und Analyse sollte hingegen auf einen leistungsfähigeren Rechner zurückgegriffen werden.
+
 
 \subsection{Sensordaten sammeln}
-Ursprünglich sollte der Teilbereich "`Sensordaten sammeln"' nur einen kleinen Teil der gesamten Projektarbeit ausmachen. Der grösste Teil der Arbeit sollte für den BigData-Teil, sprich die Aufbereitung, Aggregierung und Auswertung der gesammelten Sensordaten, aufgewendet werden. 
+Ursprünglich sollte der Teilbereich "`Sensordaten sammeln"' nur einen kleinen Teil der gesamten Projektarbeit ausmachen. Der grösste Teil der Arbeit sollte für den BigData-Teil, sprich die Aufbereitung, Aggregierung, Auswertung und Visualisierung der gesammelten Sensordaten, aufgewendet werden. 
 
 Relativ rasch hat sich gezeigt, dass die Anbindung der Raspberry Pi GrovePi Sensoren mit einer Sprache des .NET Frameworks nicht so einfach zu bewerkstelligen ist. Die vorhandene .NET-Library für den Zugriff auf das Sensorboard erforderte das neue .NET Core Framework. Aufgrund der geringen Dokumentationen und Erfahrungen mit dem neuen .NET Core Framework hat es viel Aufwand gekostet herauszufinden, dass wir die Library unter Linux 32-Bit aktuell nicht verwenden können.
 
-Aufgrund dessen mussten wir eine andere Möglichkeit finden, um die Sensordaten abzugreifen. Am Ende waren wir mit Hilfe von zwei allgemeineren Raspberry Pi .NET Libraries in der Lage über den I2C-Bus auf das Sensorboard zuzugreifen. Die finale Lösung wurde mit Hilfe dieser .NET Libraries, einem C\# Wrapper und einem F\# Programm realisiert.
+Aufgrund dessen mussten wir eine andere Möglichkeit finden, um die Sensordaten abzugreifen. Am Ende waren wir mit Hilfe von drei allgemeineren Raspberry Pi .NET Libraries in der Lage über den \gls{acr:I2C}-Bus auf das GrovePi-Sensorboard zuzugreifen. Die finale Lösung wurde mit Hilfe dieser .NET Libraries, einem C\# Wrapper und einem F\# Programm realisiert.
 
-Sobald der Ziel-Setup klar war, war die Arbeit mit den Libraries und F\# relativ unkompliziert. Schwierigkeiten bereiteten nur unvollständige oder mangelhafte Dokumentationen und Beispiele.
+Sobald der Ziel-Setup klar war, war die Arbeit mit den Libraries und F\# relativ unkompliziert. Schwierigkeiten bereiteten hauptsächlich unvollständige oder mangelhafte Dokumentationen und Beispiele.
 
 \subsection{Sensordaten aufbereiten und auswerten}
-Der erste Schritt bei der Aufbereitung und Auswertung war die Visualisierung von Testdaten in einem Chart. Auch an dieser Stelle hatten wir mit mit den Eigenheiten von Linux, beziehungsweise des Mono-Frameworks zu kämpfen. Die vorhandenen NuGet-Packages konnten nicht ohne weiteres direkt verwendet werden. Es waren zusätzlich manuelle Referenzen zu den \gls{acr:GTK} Libraries notwendig. 
+Der erste Schritt bei der Aufbereitung und Auswertung der Sensordaten war die Visualisierung von Testdaten in einem Chart. Auch an dieser Stelle hatten wir mit mit den Eigenheiten von Linux, beziehungsweise des Mono-Frameworks zu kämpfen. Die vorhandenen NuGet-Packages konnten nicht ohne weiteres direkt verwendet werden. Es waren zusätzlich manuelle Referenzen zu den \gls{acr:GTK} Libraries und weitere Einstellungen notwendig. 
 
 Die Libraries F\#-Data und F\#-Charting haben gut funktioniert. Jedoch waren die Dokumentationen und zur Verfügung gestellten Beispiele der beiden Libraries nur bedingt anwendbar / brauchbar.
 
 
 \section{Reflexion}
-Das gewählte Themengebiet war für uns sehr spannend und interessant, da es sich noch um ein relativ neues Themengebiet und eine erst aufkommende Kombination von Technologien handelt. F\# kann man nicht mehr unbedingt als "`junge Programmiersprache"' bezeichnen (Erscheinungsjahr: 2002), jedoch ist die Verwendung unter einem Nicht-Microsoft / Windwos-System noch nicht so verbreitet. Vor eine grössere Herausforderung hat uns dann erst die Verwendung einer Libary, welche das neue .NET Core Framework benötigt, gestellt. Aufgrund der noch fehlenden, unvollständigen und teilweise bereits wieder veralteten Dokumentationen mussten wir viel Zeit und Energie auf Recherchen und Analysen in diesem Bereich verwenden.
-
-\todo{Zusätzlicher Abschnitt}
-
-Trotz allem war es für uns sehr interessant ein Projekt mit solchen neuen und innovativen Technologien und Technologiekombinationen zu realisieren. 
+Das gewählte Themengebiet war für uns sehr spannend und interessant, da es sich noch um ein relativ neues Themengebiet und eine erst aufkommende Kombination von Technologien handelt. F\# kann man nicht mehr unbedingt als "`junge Programmiersprache"' bezeichnen (Erscheinungsjahr: 2002), jedoch ist die Verwendung unter einem Nicht-Microsoft / Windwos-System noch nicht so verbreitet. Vor eine grössere Herausforderung hat uns dann erst die Verwendung einer Libary, welche das neue .NET Core Framework benötigt, gestellt. Aufgrund der noch fehlenden, unvollständigen und teilweise bereits wieder veralteten Dokumentationen mussten wir viel Zeit und Energie auf Recherchen und Analysen in diesem Bereich verwenden. Dadurch konnten wir uns mit dem "`BigData"' Teil nicht so intensiv auseinandersetzen, wie das ursprünglich geplant und definiert war.

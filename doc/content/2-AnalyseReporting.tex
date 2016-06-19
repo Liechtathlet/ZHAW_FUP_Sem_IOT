@@ -7,11 +7,9 @@ Im vorangehenden Kapitel wurde beschrieben, wie die Daten mit Hilfe eines Raspbe
 
 \section{Verwendete Software}
 \label{sec:display:software}
-Die Daten werden mittels F\# auf einem Linux Mint (ein Ubuntu Ableger) dargestellt. Dazu muss Mono installiert werden. 
+Die Daten werden mittels F\# auf einem Linux Mint (ein Ubuntu Ableger) dargestellt. Dazu muss ebenfalls Mono und F\# Interactive installiert werden. Zusätzlich werden die Daten ebenfalls auf dem Raspberry Pi (via Remote Desktop) mit dem selben Programm 
 
 Danach werden die Daten mit F\# Data\footcite{FShaprp_Data_2016-06-17} ausgelesen, mit F\# aufbereitet und mit FSharp.Charting\footcite{FSharp_Charting_2016-06-17} dargestellt.
-
-\todo{Evtl. Abschnitt über Visualisierung mit Raspberry PI, wenn noch Zeit}
 
 \subsection{Mono}
 Was Mono ist und wie es installiert wird, wurde im \cref{sec:collect:fsharp:variant1:mono} \nameref{sec:collect:fsharp:variant1:mono} beschrieben.
@@ -322,6 +320,4 @@ Schlussendlich konnte mit F\# Code die vom den GrovePi Sensoren erfassten Daten 
   \caption{Resultat: Lichtsensor}
 \end{figure}
 
-Das Chart zeigt die Auswertung eines Lichtsensores, welcher vom 27.05.2016 um 13:16 bis am 01.06.2016 um 17:37 Uhr lief (447'639 Sekunden). Gesammelt wurden 708'204 Messungen. Dies macht pro Sekunde 1.58 Messpunkte. Die Darstellung des Chart-Fensters dauerte 4.92 und die Vearbeitung aller Datensätze 5.88 Sekunden.
-
-\todo{Evtl. Vergleich mit Raspberry Pi, wenn noch Zeit}
+Das Chart zeigt die Auswertung eines Lichtsensores, welcher vom 27.05.2016 um 13:16 bis am 01.06.2016 um 17:37 Uhr lief (447'639 Sekunden). Gesammelt wurden 708'204 Messungen. Dies macht pro Sekunde 1.58 Messpunkte. Die Darstellung des Chart-Fensters dauerte 4.92 und die Verarbeitung aller Datensätze 5.88 Sekunden. Wird dieses Programm auf dem Raspberry Pi 2 (Model B) ausgeführt benötigt die Darstellung des Chart-Fensters rund 37 Sekunden und die gesamte Verarbeitung 2. Minuten und 54 Sekunden.

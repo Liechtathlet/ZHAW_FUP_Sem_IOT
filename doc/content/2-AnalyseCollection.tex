@@ -2,7 +2,7 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Sensordaten sammeln}
-Dieses Kapitel beschäftigt sich mit dem Teilprojekt der Sammlung von Sensordaten. Die Aufbereitung der gesammelten Daten ist Teil eines weiteren Kapitels.
+Dieses Kapitel beschäftigt sich mit dem Teilprojekt der Sammlung von Sensordaten. Die Auswertung und Aufbereitung der gesammelten Daten wird im Kapitel \ref{chap:AnalyseReporting} \nameref{chap:AnalyseReporting} beschrieben.
 
 
 \section{F\# auf dem Raspberry Pi}
@@ -13,14 +13,14 @@ Es ist zu erwarten, dass der Weg über Window 10 IoT der einfachere sein wird, d
 \subsection{Variante 1: Raspbian Jessie}
 \subsubsection{1: Installation \& Konfiguration von Raspbian Jessie}
 \label{sec:collect:fsharp:variant1:installation}
-Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software)\footcite{NOOBS_2016-04-25} verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die \hyperlink{https://www.raspberrypi.org/documentation/installation/noobs.md}{Anleitung} verwendet.
+Zuerst wurde Raspbian Jessie auf dem Raspberry Pi installiert. Für die Installation des Betriebssystems wurde NOOBS (New Out Of Box Software)\footcite{NOOBS_2016-04-25} verwendet. NOOBS ist ein Installationsmanager für Betriebssysteme, der es ermöglicht per Klick ein gewünschtes Betriebssystem zu installieren. Es wurde dabei die offizielle \hyperlink{https://www.raspberrypi.org/documentation/installation/noobs.md}{Anleitung der Raspberry Pi Foundation} verwendet.
 
-Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationen notwendig (z.B. Konfiguration des WLAN, Deaktivierung von IPv6 in einem IPv4 Netzwerk).
+Je nach Netzwerk und Setup sind einige kleinere weitere Konfigurationsanpassungen notwendig (z.B. Konfiguration des WLAN, Deaktivierung von IPv6 in einem IPv4 Netzwerk).
 
 
 \subsubsection{2: Installation des Mono-Frameworks \& F\#}
 \label{sec:collect:fsharp:variant1:mono}
-Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert. Mono ist eine Open Source implementation von Microsofts .NET Framework und wird benötigt, um F\# Code auszuführen.
+Im Anschluss wurde die neuste Version des Mono-Frameworks (4.2.3) und der F\#-Interactive Shell (F\# Version 4.0) über die in den Software-Repositories vorhandenen Pakete installiert. Mono ist eine Open Source implementation von Microsofts .NET Framework und wird benötigt, um F\# unter Linux auszuführen.
 
 \begin{lstlisting}
 sudo apt-get install mono-complete fsharp
@@ -28,7 +28,7 @@ sudo apt-get install mono-complete fsharp
 
 
 \subsubsection{3: Installation \& Konfiguration GrovePi}
-Die Installation und Konfiguration wurde anhand der vom Hersteller zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt. Der Setup wurde anschliessend mit einem bereitgestellten Python-Script getestet.
+Die Installation und Konfiguration wurde anhand der vom Hersteller (Dexter Industries) zur Verfügung gestellten \hyperlink{ http://www.dexterindustries.com/GrovePi/get-started-with-the-grovepi/setting-software/}{Anleitung} durchgeführt.
 
 \textbf{Schwierigkeiten}\\
 Bei der Installation musste ein Git-Repository des Herstellers geklont werde. Dieses beinhaltet die Firmeware und verschiedenste Code-Beispiele und Beispiel Scripts. Das Repository scheint jedoch von gewissen Netzwerkknoten nicht erreichbar zu sein. Das Repository konnte nur im Netzwerk der \gls{acr:ZHAW} geklont werden.
@@ -38,10 +38,10 @@ Die Installation und Konfiguration des GrovePi wurde über ein Testsetup mit Hil
 
 
 \subsubsection{4: Anbindung des GrovePi via GrovePi-NuGet-Library}
-Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste testweise Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung wird für dieses Paket das Microsoft .NET Framework 5 benötigt. Beim Microsoft .NET Framework handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
+Nun galt es den GrovePi über F\# anzusteuern und entsprechende Sensordaten auszulesen. Während der Recherchen wurden wir auf eine NuGet-Library\footcite{NuGet_GrovePi_2016-04-24} aufmerksam, welche die entsprechende Funktionalität bereitstellt. In der Entwicklungsumgebung (Monodevelop) wurde eine neues F\# Projekt angelegt und das entsprechende NuGet-Packet installiert. Der erste Test-Build mit dem NuGet-Paket schlug fehl. Gemäss der Fehlermeldung weist das Paket eine Abhängigkeit zum Microsoft .NET Framework 5 auf. Beim Microsoft .NET Framework 5 handelt es sich um eine Neuauflage des klassischen .NET Frameworks. Im nachfolgenden Abschnitt werden die wichtigsten Aspekte des .NET Frameworks 5 (beziehungsweise .NET Core) erläutert.
 
 \textbf{.NET Core}\\
-Ursprünglich war es geplant .NET Core als "`.NET Framework Version 5"' auszurollen. Inzwischen wurde von Microsoft entschieden, .NET Core unter einer eigenständigen Versionsnummer zu führen (Ausgehend davon war die im vorangehenden Abschnitt beschriebene Fehlermeldung nicht mehr korrekt.).
+Ursprünglich war es geplant .NET Core als "`.NET Framework Version 5"' auszurollen. Inzwischen wurde von Microsoft entschieden, .NET Core unter einer eigenständigen Versionsnummer zu führen (Ausgehend davon war die im vorangehenden Abschnitt beschriebene Fehlermeldung nicht mehr korrekt). Das reguläre .NET Framework wird vorläufig mit einer eigenständigen Nummerierung fortgeführt. Die nächste Version wird das .NET Framework 4.6 sein.
 
 Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
 \begin{itemize}
@@ -57,7 +57,12 @@ Nachfolgend eine Auflistung der wichtigsten Aspekte und Ziele von .NET Core:
 \item Runtime wird als NuGet Package ausgeliefert
 \end{itemize}
 \item Default Compiler für x64: "`Roslyn"' just-in-time Compiler
-\item Verfügbare Runtime Varianten: .NET Native (Windows Only), Core CLR (Common Language Runtime, Multiplattform), Weitere ...
+\item Verfügbare Runtime Varianten: 
+\begin{itemize}
+\item .NET Native (Windows Only)
+\item Core CLR (Common Language Runtime, Linux, Mac OS, Windows)
+\item Weitere ...
+\end{itemize}
 \end{itemize}
 
 Die nachfolgende Grafik zeigt eine grobe Übersicht über das .NET Framework und .NET Core:
@@ -71,7 +76,7 @@ Die nachfolgende Grafik zeigt eine grobe Übersicht über das .NET Framework und
 \subsubsection{5: Installation von .NET Core}
 Aufgrund der Fehlermeldung haben wir nun versucht .NET Core auf dem Raspberry Pi zu installieren. Zur Zeit zu dem dieser Setup durchgeführt wurden, existierten keine offiziellen Microsoft-Quellen zur Installation von .NET Core unter Linux.
 
-Um .NET Core unter Raspbian zu installieren, wird das bereits installierte Mono Framework benötigt. Anschliessend kann das \gls{acr:DNX} installiert werden. Diese Execution Environement beinhaltet alle notwendigen Libraries, um .NET Core Applikation auszuführen. Um  \gls{acr:DNX} zu installieren ist es am einfachsten den \gls{acr:DNVM} zu verwenden. Mit dem Version Manager können einfach verschiedene Version von .NET parallel installiert werden. 
+Um .NET Core unter Raspbian zu installieren, wird das bereits installierte Mono Framework benötigt. Anschliessend kann das \gls{acr:DNX} installiert werden. Diese Execution Environement beinhaltet alle notwendigen Libraries, um .NET Core Applikation auszuführen. Um  \gls{acr:DNX} zu installieren ist es am einfachsten den \gls{acr:DNVM} zu verwenden. Mit dem Version Manager können verschiedene Versionen des .NET Frameworks parallel installiert werden. \gls{acr:DNVM} bietet auch Möglichkeiten um zwischen den einzelnen Versionen einfach und schnell hin und her zu wechseln.
 
 \textbf{Installation \gls{acr:DNVM}} \\
 \begin{lstlisting}
@@ -86,16 +91,16 @@ dnvm upgrade -u
 dnvm install latest -r coreclr -u
 \end{lstlisting}
 
-Die oben beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits wieder verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedekct werden\footnotemark[1]. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
+Die beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits wieder verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedeckt werden\footnotemark[1]. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
 
 \footnotetext[1]{\url{http://dotnet.github.io/docs/core-concepts/dnx-migration.html}}
 
-Die nächste Herausforderung bestand anschliessend mit dem neuen Build-System das korrekte Target-Framework zu finden. Aufgrund dessen, dass es noch keinen ersten finalen Release von .NET Core CLI gibt, kursierten im Web verschiedenste Definitionen für das Target-Framework. Darunter zum Beispiel "`dotnet"' und "`dnxcore50"'.
+Die nächste Herausforderung bestand anschliessend darin im neuen Build-System das korrekte Target-Framework zu definieren. Aufgrund dessen, dass es noch keinen ersten finalen Release von .NET Core CLI gibt, kursierten im Web verschiedenste Definitionen für das Target-Framework. Darunter zum Beispiel "`dotnet"' und "`dnxcore50"'.
 
 Längere Recherchen und Analysen haben anschliessend zwei Fakten zu Tage gebracht, mit welchen wir nicht gerechnet hatten.
 \begin{itemize}
-\itemBfText{.NET Core in 32-Bit}{Aktuell gibt es vom .NET Core keine 32-Bit Implementation. Sämtliche Raspberry Pi Modelle basieren auf einer ARM 32-Bit Architektur. Ausgenommen davon ist das neuste Model, der Raspberry Pi 3 Model B. Ebenfalls gibt es Raspbian aktuell nur in einer 32-Bit Version.}
-\itemBfText{GrovePi NuGet Paket verwendet Windows-Only Funktionalitäten}{Das GrovePi NuGet Paket hat Abhängigkeiten zur Universal Windows Platform (UAP). Die Universal Windows Platform gibt es nur für Windows, nicht für Linux oder Mac OS. Diese Abhängigkeit rührt wahrscheinlich daher, dass die Library ursprünglich spezifisch für Windows 10 IoT entworfen wurde.}
+\itemBfText{.NET Core in 32-Bit}{Aktuell gibt es von .NET Core keine 32-Bit Implementation. Sämtliche Raspberry Pi Modelle basieren auf einer ARM 32-Bit Architektur. Ausgenommen davon ist das neuste Model, der Raspberry Pi 3 Model B. Jedoch gibt es Raspbian aktuell nur in einer 32-Bit Version.}
+\itemBfText{GrovePi NuGet Paket verwendet Windows-Only Funktionalitäten}{Das GrovePi NuGet Paket hat Abhängigkeiten zur Universal Windows Platform (UAP). Die Universal Windows Platform ist Teil der .NET Native Runtime und gibt es daher nur für Windows, nicht für Linux oder Mac OS. Die Abhängigkeit dieses NugGet Paketes von .NET Native besteht wahrscheinlich deshalb, weil die Library ursprünglich für die Verwendung mit Windows 10 Iot entworfen wurde.}
 \end{itemize}
 
 
@@ -107,9 +112,9 @@ Aufgrund dieser letzten Erkenntnisse haben wir uns entschieden die Umsetzung auf
 Windows 10 IoT ist eine Version des Betriebssystems von Microsoft, welches speziell für kleinere Geräte mit weniger Rechenleistung konzipiert wurde.
 
 \subsubsection{Installation von Windows 10 IoT}
-Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei ersteren wird das Betriebsystem direkt auf die SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU Datei welche über das Core Dashboard installiert werden muss. Danach sollte das Raspberry Pi startbar sein. 
+Microsoft bietet zwei Varianten an, um Windows 10 IoT auf einem Raspberry Pi zu installieren. Bei der ersten Variante wird das Betriebsystem direkt auf der SD-Karte installiert\footcite{install_win10iot_2016-04-25}. Dazu muss das Windows 10 IoT Core Dashboard auf einem Computer installiert werden. Anschliessend wird eine ISO Datei heruntergeladen, welches eine Installationsdatei beinhaltet welche über ein richtiges Windows 10 gestartet werden muss. Dies Datei kompiliert eine FFU Datei (Full Flash Update, Image-Datei) welche über das Core Dashboard installiert werden muss. Danach sollte der Raspberry Pi mit Windows 10 IoT gestartet werden können. \todo{Was bedeutet FFU?}
 
-Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb bei dem Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen.
+Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern blieb beim Rainbow Screen\footcite{RPi_Rainbowscreen_2016-04-25} hängen. Der Rainbow Screen ist Teil des Boot-Vorgangs und wird im Rahmen des \gls{acr:GPU}-Tests generiert.
 
 \begin{figure}[H]
   \centering
@@ -117,7 +122,7 @@ Leider startete das Raspberry Pi nach dem genannten Prozedere nicht, sondern bli
   \caption{Raspberry Pi rainbow screen}
 \end{figure}
 
-Die zweite Variante der Installation von Windows 10 IoT arbeitet mit dem NOOBS Installer (siehe \ref{sec:collect:fsharp:variant1:installation} \nameref{sec:collect:fsharp:variant1:installation}), welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird. Dazu muss NOOBS auf einer SD-Karte installiert werden. Danach kann man die Karte in das Raspberry einfügen und starten. Um Windows 10 IoT zu installieren, muss in NOOBS das Wireless aktiviert werden, damit der Installer das Windows 10 IoT aus dem Internet herunterladen kann. Danach installiert es automatisch.
+Die zweite Variante der Installation von Windows 10 IoT arbeitet mit dem NOOBS Installer (siehe \ref{sec:collect:fsharp:variant1:installation} \nameref{sec:collect:fsharp:variant1:installation}), welcher von der Raspberry Pi Foundation zur Verfügung gestellt wird. Zuerst muss NOOBS auf einer SD-Karte installiert (entpackt) und diese anschliessend in den Raspberry PI eingelegt werden. Vor dem Start muss der Raspberry Pi ans Internet angeschlossen werden, damit der Installer die notwendigen Dateien für die Installation herunterladen kann. Nach dem Anschluss des Raspberry Pi an die Stromversorgung startet der Installations-Manager in welchem Windows 10 Iot ausgewählt und installiert werden kann.
 
 Die Installation über NOOBS war einiges einfach als diejenige über das Core Dashboard und war schlussendlich auch erfolgreich.
 
@@ -136,6 +141,7 @@ Da für die Entwicklung für das GrovePi das .NET Core nötig ist, wurde nach ei
 \begin{lstlisting}
 c:\> dnvm install -r coreclr -arch x64 latest -u
 \end{lstlisting}
+\todo{@Simon: Meinsch da 64-Bit nimmi ah?}
 Dies installiert die CoreCLR 32bit Version für einen ARM Prozessor, welcher auf dem Raspberry Pi verwendet wird. Leider funktionierte dies nicht. 
 
 \begin{lstlisting}
@@ -151,21 +157,29 @@ Linking C executable cmTryCompileExec3109069071
 make[1]: Leaving directory `/home/win10iot/coreclr/bin/obj/Linux.x64.Debug/CMakeFiles/CMakeTmp'
 \end{lstlisting}
 
+\todo{Ist das oben die Fehlermeldung?}
 Deshalb wurde entschieden, das Projekt mit der Variante 1: Rasbian Jessie fortzusetzen.
 
 \section{Speicherung der Sensordaten}
 Zum Abspeichern der Sensordaten haben sich verschiedene Datenformate angeboten. Um die Komplexität möglichst gering zu halten und maximale Flexibilität zu erreichen, haben wir uns entschieden die Sensordaten File-basiert abzuspeichern.
 
-Neben CSV (Comma Separated Values) standen auch JSON (JavaScript Object Notation) oder XML (Extensible Markup Language) zur Auswahl. Da die Daten in einem kontinuierlichen Stream geschrieben werden müssen haben wir uns schlussendlich für ein klassisches CSV-File entschieden. Dies bietet den Vorteil, dass neue Datensätze ohne Probleme laufend ans Ende der Datei angehängt werden können.
+Neben \gls{acr:CSV} standen auch \gls{acr:JSON} oder \gls{acr:XML} zur Auswahl. Da die Daten in einem kontinuierlichen Stream geschrieben werden müssen haben wir uns schlussendlich für ein klassisches CSV-File entschieden. Dies bietet den Vorteil, dass neue Datensätze ohne Probleme laufend ans Ende der Datei angehängt werden können.
 
-Bei JSON und XML ist dies nicht ohne weiteres möglich, da die Daten dort in Hierarchischer Form abgespeichert werden.
+Bei \gls{acr:JSON} und \gls{acr:XML} ist dies nicht ohne weiteres möglich, da die Daten dort in Hierarchischer Form abgespeichert werden.
 
 
 \section{Umsetzung}
 In diesem Kapitel wird die konkrete Umsetzung der Problemstellung "`Sammeln von Sensordaten"' beschrieben.
 
 \subsection{Verwendete Hardware}
-Für die Realisierung wurden nachfolgend aufgelisteten Hardware-Komponenten verwendet:
+Für die Realisierung wurden nachfolgend aufgelisteten Hardware-Komponenten verwendet.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{./images/_DSC2016}
+  \caption{Der verwendete Raspberry Pi mit den Sensoren}
+\end{figure}
+
 \begin{itemize}
 \item Raspberry Pi 2 Model B
 \item Raspberry Pi 3 Model B
@@ -179,13 +193,17 @@ Für die Realisierung wurden nachfolgend aufgelisteten Hardware-Komponenten verw
 \end{itemize}
 
 
+
+
 \subsection{Verwendete Software}
-Für die Realisierung werden folgende Softwarekomponenten verwendet:
+Für die Realisierung, beziehungsweise den Betrieb, wurden folgende Softwarekomponenten verwendet:
 
 \begin{itemize}
 \item Raspbian Jessie
 \item GrovePi Firmware + Beispiele
 \item Mono 4.2
+\item NOOBS
+\item F\# Interactive
 \end{itemize}
 
 \subsection{Dokumentation der Implementation}
@@ -199,7 +217,7 @@ scp -rp ./Raspberry.FGrove pi@raspberrypi.local:/home/pi/Development/FUP/
 \end{lstlisting}
 
 \subsection{Datentransfer vom Raspberry Pi}
-Der Datentransfer vom Raspberry Pi wurde durch einen einfachen HTTP-Server auf Python-Basis bewerkstelligt. Python wurde bei der Installation des GrovePi automatisch mitinstalliert. Dadurch konnten wir den "`SimpleHTTPServer"' nutzen, welcher standardmässig mit Python ausgeliefert wird.
+Der Datentransfer vom Raspberry Pi auf einen anderen Computer wurde durch einen einfachen HTTP-Server auf Python-Basis bewerkstelligt. Python wurde bei der Installation des GrovePi automatisch mitinstalliert. Dadurch konnten wir den "`SimpleHTTPServer"' nutzen, welcher standardmässig mit Python ausgeliefert wird.
 
 \begin{lstlisting}
 python -m SimpleHTTPServer 8000
@@ -207,12 +225,12 @@ python -m SimpleHTTPServer 8000
 
 
 \subsection{Betrieb \& Starten der Applikation}
-Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand von Anleitungen von \hyperlink{http://lcdev.dk/2012/11/18/raspberry-pi-tutorial-connect-to-wifi-or-create-an-encrypted-dhcp-enabled-ad-hoc-network-as-fallback/}{Lasse Christiansen} und \hyperlink{http://slicepi.com/creating-an-ad-hoc-network-for-your-raspberry-pi/}{cpetty33} durchgeführt.
+Damit der Raspberry Pi zum Sammeln von Sensordaten theoretisch auch unabhängig von einem Netzwerk betrieben werden könnte, wurde der Raspberry Pi als WiFi-Access-Point konfiguriert. Beim Start wird geprüft, ob ein bekanntes WiFi-Netzwerk verfügbar ist. Ist dies nicht der Fall, werden entsprechend die Konfigurationen für den WiFi-Access-Point geladen. Die Konfiguration dieses Access-Points, beziehungsweise Ad-Hoc-Netzwerkes, wurde anhand der Anleitungen von \hyperlink{http://lcdev.dk/2012/11/18/raspberry-pi-tutorial-connect-to-wifi-or-create-an-encrypted-dhcp-enabled-ad-hoc-network-as-fallback/}{Lasse Christiansen} und \hyperlink{http://slicepi.com/creating-an-ad-hoc-network-for-your-raspberry-pi/}{cpetty33} durchgeführt.
 
 
 Mit diesem Setup kann nun jederzeit auf den Raspberry Pi zugegriffen und entweder die Anwendung gestartet / gestoppt oder die Daten heruntergeladen werden.
 
-Für den Start der Anwendung musste ein zusätzliches Tool namens "`screen"' installiert werden. Mit diesem Tool ist es einfach möglich mehrere Hintergrundverarbeitungen zu starten, welche nicht automatisch beendet werden, wenn die aktuelle Session (SSH-Verbindung) beendet wird.
+Für den Start der Anwendung musste ein zusätzliches Tool namens "`screen"' installiert werden. Mit diesem Tool ist es einfach möglich mehrere Hintergrundverarbeitungen zu starten, welche nicht automatisch beendet werden, sobald die aktuelle Session (SSH-Verbindung) terminiert wird.
 
 \textbf{Start der Anwendung}
 \begin{lstlisting}
@@ -239,12 +257,22 @@ exit (closes current window and screen session)
 Nachfolgend werden die wichtigsten Punkte der einzelnen Komponenten dokumentiert.
 
 \subsection{Komponenten}
-Die Anwendung besteht aus folgenden Teilkomponenten:
+Die Anwendung besteht aus den nachfolgend beschriebenen Teilkomponenten.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=6cm]{./images/Component-Overview}
+  \caption{Komponentenübersicht}
+\end{figure}
+
 \begin{itemize}
-\item Raspberry.IO.InterIntegratedCircuit (C\# Library)
-\item Raspberry.GrovePi (C\# Library)
 \item Raspberry.FGrove (F\# Applikation)
+\item Raspberry.GrovePi (C\# Library)
+\item Raspberry.IO.InterIntegratedCircuit (C\# Library)
+\item Raspberry.IO.GeneralPurpose (C\# Library)
+\item Raspberry.System (C\# Library)
 \end{itemize}
+
 
 \subsection{Source Code}
 Der Source Code wird in folgendem Git-Repository verwaltet: \hyperlink{https://github.com/Liechtathlet/FUP_Sem_IOT}{FUP\_Sem\_IOT}
@@ -261,7 +289,7 @@ Diese Komponente stellt unter Verwendung der Library "`Raspberry.IO.InterIntegra
 
 Die Library besteht aus einer einzigen Wrapper-Klasse, welche die \gls{acr:I2C} und GrovePi spezifischen Elemente für die eingesetzten Sensoren abstrahiert. Über den \gls{acr:I2C}-Bus müssen spezifische Befehle gesendet werden, um die gewünschten Sensordaten auszulesen. Diese Befehle werden von einem Arduino auf dem GrovePi Board interpretiert und verarbeitet. Die zulässigen Befehlssequenzen wurden den Hersteller-Dokumentationen entnommen.
 
-\todo{Absatz bezüglich Wertebereich der Sensoren}
+Die Daten, welche von den Sensoren zurückgegeben werden, sind meistens nicht direkt verwendbar, da diese noch in Rohform vorliegen. Der Temperatursensor gibt zum Beispiel keinen absoluten Wert in Grad Celsius oder Kelvin zurück. Die entsprechenden Rohwerte müssten über spezielle Formeln entsprechend den Hardwarekomponenten umgerechnet werden. Die Herstellerdokumentationen sind an dieser Stelle leider lückenhaft, wodurch die entsprechenden Umrechnungen nur teilweise durchgeführt werden konnten.
 
 \begin{itemize}
 \item \hyperlink{https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/the-gpio-connector}{Raspberry Pi GPIO Connector}
@@ -437,7 +465,7 @@ let processNoiseEvent() =
      writeData "N" (sensorValue.ToString()) DateTime.Now currentLocation
 \end{lstlisting}
 
-Die Daten werden in folgendem Format in die CSV-Datei geschrieben:
+Die Daten werden in folgendem Format in die CSV-Dateien geschrieben:
 \begin{lstlisting}
 Date;Time;SensorData;Location
 06.05.2016;11:55:30.344;68;Brun@Home;

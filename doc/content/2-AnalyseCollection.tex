@@ -91,7 +91,7 @@ dnvm upgrade -u
 dnvm install latest -r coreclr -u
 \end{lstlisting}
 
-Die beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits wieder verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedeckt werden\footnotemark[1]. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
+Die beschriebenen Schritte konnten soweit problemlos durchgeführt werden. Anschliessend galt es das Test-Projekt auf das neue Build-System von  \gls{acr:DNX} umzustellen, welches mit .NET Core verwendet werden muss. Während dieser Umstellung hat sich gezeigt, dass der \gls{acr:DNVM} und die  \gls{acr:DNX} bereits wieder verworfen wurde und direkt durch die .NET Core CLI (Command Line Interface) abgedeckt werden\footnotemark[1]. Diese Umstellung wurde mit dem Wechsel der Version .NET Core RC1 auf .NET Core RC2 eingeführt. Zum Zeitpunkt dieser Arbeit bestand jedoch neben dem \gls{acr:DNVM} keine andere Möglichkeit .NET Core unter Linux / Mono zu installieren. Glücklicherweise konnte das .NET Core CLI zusammen mit der .NET Core Runtime dennoch via \gls{acr:DNVM} installiert werden.
 
 \footnotetext[1]{\url{http://dotnet.github.io/docs/core-concepts/dnx-migration.html}}
 

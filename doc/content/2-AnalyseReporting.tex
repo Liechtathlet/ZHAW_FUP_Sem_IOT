@@ -2,7 +2,7 @@
 % !TeX spellcheck = de_CH_frami
 
 \chapter{Sensordaten auswerten und aufbereiten}\label{chap:AnalyseReporting}
-Im vorhergegangenen Kapitel wurde beschrieben, wie die Daten mittels Raspberry Pi und F\# gesammelt wurden. Diese Informationen müssen jetzt aufbereitet und dargestellt werden. Dies wird in diesem Kapitel beschrieben.
+Im vorangehenden Kapitel wurde beschrieben, wie die Daten mit Hilfe eines Raspberry Pi und F\# gesammelt wurden. Die Aufbereitung, Auswertung und Visualisierung dieser Daten wird in diesem Kapitel beschrieben.
 
 
 \section{Verwendete Software}
@@ -11,10 +11,12 @@ Die Daten werden mittels F\# auf einem Linux Mint (ein Ubuntu Ableger) dargestel
 
 Danach werden die Daten mit F\# Data\footcite{FShaprp_Data_2016-06-17} ausgelesen, mit F\# aufbereitet und mit FSharp.Charting\footcite{FSharp_Charting_2016-06-17} dargestellt.
 
+\todo{Evtl. Abschnitt über Visualisierung mit Raspberry PI, wenn noch Zeit}
+
 \subsection{Mono}
 Was Mono ist und wie es installiert wird, wurde im \cref{sec:collect:fsharp:variant1:mono} \nameref{sec:collect:fsharp:variant1:mono} beschrieben.
 
-.NET Core wird für F\# Data und FSharp.Charting nicht benötigt. Deshalb entfällt auch die Installation von \gls{acr:DNVM} und \gls{acr:DNX}. 
+.NET Core wird für F\# Data und FSharp.Charting nicht benötigt. Dadurch entfällt auch die Installation der entsprechenden Komponenten.
 
 \subsection{F\# Data}
 \label{sec:display:software:fsharpdata}
@@ -26,7 +28,7 @@ F\# Data ist eine Library für den Zugriff auf Daten. Unterstützt werden folgen
 \item XML
 \end{itemize}
 
-In dieser Arbeit wurde als Datenformat CSV gewählt, weshalb die folgende Erklärung für dieses Format ausgelegt wurde.
+In dieser Arbeit wurde als Datenformat CSV gewählt, weshalb die nachfolgenden Erklärungen für dieses Format ausgelegt wurde.
 Zuerst muss ein Type erstellt werden, welcher für die Zugriff auf die Daten verwendet wird.
 \begin{lstlisting}
 type Weather = CsvProvider<"http://www.some-weather-service.org/data.csv", ";">
@@ -45,7 +47,7 @@ Der Zweite Parameter im obigen Code ist ein Semicolon und definiert, welches Zei
 
 Danach können die Daten geladen werden:
 \begin{lstlisting}
-let weatherData = SensorData.Load(""http://www.some-weather-service.org/data.csv")
+let weatherData = SensorData.Load("http://www.some-weather-service.org/data.csv")
 \end{lstlisting}
 
 Die Variable weatherData enthält eine Sequenz von dem zuvor erstellten Typen, über welche nun zugegriffen werden kann.
@@ -140,7 +142,7 @@ Die Ausgabe dieses Codes ist die folgende:
 
 
 \section{Dokumentation der Implementation}
-Im \cref{sec:display:software} \nameref{sec:display:software} wurde die Software für die Implementation vorgestellt. In diesem Abschnitt wird auf die Umsetzung für dieses Projekt eingegangen. Zuerst wird das Auslesen der Daten, danach die Aufbereitung und zuletzt die Darstellung erläutert.
+Im \cref{sec:display:software} \nameref{sec:display:software} wurde die Software für die Implementation vorgestellt. In diesem Abschnitt wird auf die Umsetzung für dieses Projekt eingegangen. Zuerst wird das Auslesen der Daten, danach die Aufbereitung und zuletzt die Visualisierung erläutert.
 
 \subsection{Auslesen}
 \label{sec:display:documentation:reading}
@@ -186,7 +188,7 @@ Zuerst wurde die Library über NuGet installiert:
 Diese funktioniert jedoch nur auf Windows.
 Deshalb musste sie deinstalliert und statt dessen "`FSharp.Charting.Gtk"' verwendet werden.
 
-Nun wurde versucht, die Daten darzustellen mit dem Code für das Auslesen und die Aufbereitung (siehe \cref{sec:display:documentation:reading} \nameref{sec:display:documentation:reading} und \cref{sec:display:documentation:manipulation} \nameref{sec:display:documentation:manipulation}):
+Nun wurde versucht die Daten mit dem Code für das Auslesen und die Aufbereitung (siehe \cref{sec:display:documentation:reading} \nameref{sec:display:documentation:reading} und \cref{sec:display:documentation:manipulation} \nameref{sec:display:documentation:manipulation}) darzustellen:
 \begin{lstlisting}
 let lightValues = format light
 let chart = Chart.Line lightValues
@@ -210,13 +212,13 @@ Es gab verschiedene Probleme:
 \begin{enumerate}
 \item Falsche Imports
 \item Darstellung des Charts
-\item X Berechtigung
+\item 'X' Berechtigung
 \item Asynchrone Ausführung
 \end{enumerate}
 
 \textbf{1. Falsche Imports} \\
 Es stellte sich heraus, dass das einfache Einbinden von "`FSharp.Charting.Gtk.fsx"' nicht genügte.
-Mit Backtracking der Fehlermeldungen zeigte sich, dass mehrere DLL's benötigt wurden:
+Mit Backtracking der Fehlermeldungen zeigte sich, dass mehrere zusätzliche DLL's benötigt wurden:
 \begin{lstlisting}
 #I "/usr/lib/cli/gtk-sharp-2.0/"
 #I "/usr/lib/cli/gdk-sharp-2.0/"
@@ -244,10 +246,10 @@ Chart.Line(lightValues).ShowChart()
 \end{lstlisting}
 
 \textbf{3. X Berechtigung} \\
-Das Programm hat keine Berechtigung, um ein Fenster zu öffnen. Deshalb muss mit dem Befehl "`xhost +localhost"' dem localhost (der eigenen Computer) erlaubt werden, ein Fenster zu öffnen.
+Das Programm hat keine Berechtigung, um ein neues Fenster zu öffnen. Deshalb muss mit dem Befehl "`xhost +localhost"' dem localhost (der eigenen Computer) erlaubt werden, ein Fenster zu öffnen.
 
 \textbf{4. Asynchrone Ausführung} \\
-Mit dem Code bis an hin konnte ein Fenster geöffnet werden, und es wurde auch ein Chart angezeigt. Dieses konnte jedoch nicht mehr geschlossen werden, weil der Thread, auf welchem das Programm läuft, vom Chart besetzt war. Deshalb musste das Skript asynchron ausgeführt werden.
+Mit dem Code bis an hin konnte ein Fenster geöffnet werden, und es wurde auch ein Chart angezeigt. Dieses konnte jedoch nicht mehr geschlossen werden, weil der Thread, auf welchem das Programm läuft, vom Chart besetzt war. Deshalb musste das Skript so umgebaut werden, dass die Ausführung asynchron erfolgt.
 
 \textbf{Das Resultat} \\
 \begin{lstlisting}
@@ -321,3 +323,5 @@ Schlussendlich konnte mit F\# Code die vom den GrovePi Sensoren erfassten Daten 
 \end{figure}
 
 Das Chart zeigt die Auswertung eines Lichtsensores, welcher vom 27.05.2016 um 13:16 bis am 01.06.2016 um 17:37 Uhr lief (447'639 Sekunden). Gesammelt wurden 708'204 Messungen. Dies macht pro Sekunde 1.58 Messpunkte. Die Darstellung des Chart-Fensters dauerte 4.92 und die Vearbeitung aller Datensätze 5.88 Sekunden.
+
+\todo{Evtl. Vergleich mit Raspberry Pi, wenn noch Zeit}

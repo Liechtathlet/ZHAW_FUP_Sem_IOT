@@ -1,2 +1,2 @@
-Version 0.92 \\
+Version 1.00 \\
 \normalsize
